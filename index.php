@@ -317,7 +317,7 @@ session_start();
                         <div class="service-icon">
                             <i class="fab fa-android text-white"></i>
                         </div>
-                        <h4 class="mb-3">Bank with LemonFirm</h4>
+                        <h4 class="mb-3">Bank with Lakeside Credit Union</h4>
                         <p class="m-0">Besides traditional lending, we also engineer tailor-made solutions with aid of our world-class technology platforms to meet constantly changing needs of companies.</p>
                         <!-- <a class="btn btn-lg btn-primary rounded" href="">
                             <i class="bi bi-arrow-right"></i>
