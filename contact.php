@@ -109,7 +109,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Email to get free quote</h5>
-                            <h4 class="text-primary mb-0">info@lemonfirmbank.com</h4>
+                            <h4 class="text-primary mb-0">info@lakesidecreditunion.com</h4>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Visit our office</h5>
-                            <h4 class="text-primary mb-0">123 Street, Finland, USA</h4>
+                            <h4 class="text-primary mb-0">USA</h4>
                         </div>
                     </div>
                 </div>
