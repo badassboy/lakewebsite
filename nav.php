@@ -2,7 +2,9 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
             <a href="index.php" class="navbar-brand p-0">
-                <h1 class="m-0">  <img src="img/cropped.jpeg" width="50" height="50" class="d-inline-block align-top" alt="">Lakeside Credit Union</h1>
+            <h1 class="m-0">  
+               Lakeside Credit Union
+            </h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
