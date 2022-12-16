@@ -1,7 +1,12 @@
 <?php
 session_start();
+include("../library.php");
+$ch = new Banking();
+$customerName = "";
 if (isset($_SESSION['id'])) {
-  // code...
+  $userInfo = $ch->AuthenticatedUserInfo($_SESSION['id']);
+  $customerName = $userInfo['first_name'];
+
 }else {
   header("Location:index.php");
   exit;
@@ -55,7 +60,7 @@ if (isset($_SESSION['id'])) {
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>ADMIN DASHBOARD</span></a>
+          <span>CUSTOMER DASHBOARD</span></a>
       </li>
 
       <!-- Divider -->
@@ -260,7 +265,16 @@ if (isset($_SESSION['id'])) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <?php 
+
+
+
+
+                ?>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <?php echo $customerName; ?>
+                </span>
+
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -295,12 +309,13 @@ if (isset($_SESSION['id'])) {
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">ADMIN DASHBOARD</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <h1 class="h3 mb-0 text-gray-800">CUSTOMER DASHBOARD</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 
           <!-- Content Row -->
           <div class="row">
+
 
             <!-- Earnings (Monthly) Card Example -->
             

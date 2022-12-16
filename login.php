@@ -16,7 +16,8 @@ if (isset($_POST['login'])) {
     $msg = "fields required";
   }else {
     $user_login = $bank->loginUser($email,$password);
-    if ($user_login) {
+
+        if ($user_login) {
       $_SESSION['id'] = $user_login['id'];
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
@@ -27,6 +28,9 @@ if (isset($_POST['login'])) {
     }else {
       $msg = '<div class="alert alert-danger" role="alert">Login failed.</div>';
     }
+        
+    
+    
   }
 
 
@@ -77,9 +81,9 @@ if (isset($_POST['login'])) {
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+   <!--  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
 

@@ -105,7 +105,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 		$current_date = date("Y-m-d");
 
 
-		$stmt = $dbh->prepare("SELECT * FROM account WHERE email=?");
+		$stmt = $dbh->prepare("SELECT * FROM account WHERE email = ?");
 		$stmt->execute([$email]);
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		
@@ -126,6 +126,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 			);
 
 			$mail = mail($to,$subject,$message, implode("\r\n", $headers));
+			
 
 			return $data;
 
@@ -140,6 +141,15 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 
 	} 
+
+	public function AuthenticatedUserInfo($id)
+	{
+		$dbh = DB();
+		$stmt = $dbh->prepare("SELECT * FROM account WHERE id = ?");
+		$stmt->execute([$id]);
+		$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $data;
+	}
 
 	public function forgetLink($email){
 
