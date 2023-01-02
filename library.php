@@ -13,13 +13,12 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 {
 
 
-
 	$dbh = DB();
 	$hashed = password_hash($password,PASSWORD_DEFAULT);
 	$initial_balance =  20.0;
 	$account_number = rand();
 	$login_code = rand();
-
+		// insert user account if account does not exist
 	$stmt = $dbh->prepare("INSERT INTO account(account_number,balance,first_name,last_name,maiden,birthday,email,country,address,phone,account_type,password,login_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 	$stmt->execute([$account_number,$initial_balance,$firstName,$lastName,$maiden,$birthday,$email,$country,$address,$phone,$accnt_type,$hashed,$login_code]);
@@ -42,6 +41,10 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 	}else {
 		return $dbh->errorInfo();
 	}
+
+	
+
+	
 }
 
 		
@@ -84,7 +87,8 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	}
 
-	public function verificationStatus($id){
+	public function verificationStatus($id)
+	{
 		$dbh = DB();
 		$stmt = $dbh->prepare("UPDATE account SET verified=1 WHERE id=?");
 		$stmt->execute([$id]);
@@ -94,6 +98,35 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 		}else {
 			return false;
 		}
+	}
+
+	public function existingAccount($email)
+	{
+	  $stmt = $dbh->prepare("SELECT * FROM account WHERE email = ?");
+	  $stmt->execute([$email]);
+	  $data = $stmt->fetch(PDO::FETCH_ASSOC);
+	  return count($data);
+
+	}
+
+	public function firstNameCheck($firstName)
+	{
+		try{
+		  return preg_match('[@_!#$%^&*()<>?/|}{~:]', $firstName);
+		}catch(Exception $exception){
+		  print($exception->getMessage());
+		}
+          
+	}
+
+	public function lastNameCheck($lastName)
+	{
+		try{
+		   return preg_match('[@_!#$%^&*()<>?/|}{~:]', $lastName);	
+		}catch(Exception $exception){
+			print($exception->getMessage());
+		}
+	  
 	}
 
 			  
@@ -144,11 +177,81 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	public function AuthenticatedUserInfo($id)
 	{
-		$dbh = DB();
+		try{
+		  $dbh = DB();
 		$stmt = $dbh->prepare("SELECT * FROM account WHERE id = ?");
 		$stmt->execute([$id]);
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $data;
+		}catch(Exception $ex){
+			print($ex->getMessage());
+
+		}
+		
+	}
+
+	public function securedPassword($password)
+	{
+		try{
+			// check for capital letters, lower case characters,numbers and special characters
+
+		 return preg_match('@[A-Z]@', $password)|| preg_match('@[a-z]@', $password) || preg_match('@[0-9]@', $password) || preg_match('@[^\w]@', $password);
+
+		}
+
+		catch(Exception $ex){
+                 print($ex->getMessage());
+		}
+
+		return false;
+		
+		
+	}
+
+	public function passwordLength($password){
+
+		try{
+
+		    return (mb_strlen($password, "UTF-8")<6) ? true : false;
+		    
+
+		}catch(Exception $ex){
+		  print($ex->getMessage());
+		}
+
+		
+
+	}
+
+	// password matches function
+	public function passwordMatch($password,$cpwd)
+
+
+	{
+		try{
+			return ($password != $cpwd) ? true : false;
+
+		}catch(Exception $ex){
+			print($ex->getMessage());
+		}
+
+		
+		
+	}
+
+	
+
+	// validate email
+	public function validEmail($email)
+
+	{
+		try{
+		  return !filter_var($email,FILTER_VALIDATE_EMAIL) == true;
+		}catch(Exception $ex){
+			print($ex->getMessage());
+		}
+		
+		
 	}
 
 	public function forgetLink($email){
@@ -162,7 +265,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 			$stmt = $dbh->prepare("SELECT email,password FROM account  WHERE email = ?");
 			$stmt->execute([$email]);
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
+  
 				$email = $row['email'];
 				$token = bin2hex(random_bytes(50));
 
@@ -342,15 +445,15 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 	public function fundAccount($account,$amount)
 	{
 
-			$dbh = DB();
-			$stmt = $dbh->prepare("UPDATE account SET current_amount =? WHERE first_name =?");
-			$stmt->execute([$amount,$account]);
-			$data = $stmt->rowCount();
-			if ($data>0) {
-				return true;
-			}else {
-				return false;
-			}
+		$dbh = DB();
+		$stmt = $dbh->prepare("UPDATE account SET current_amount =? WHERE first_name =?");
+		$stmt->execute([$amount,$account]);
+		$data = $stmt->rowCount();
+		if ($data>0) {
+			return true;
+		}else {
+			return false;
+		}
 
 	}
 
@@ -389,14 +492,14 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 		$dbh = DB();
 
 		
-			$hashed = password_hash($pwd1,PASSWORD_DEFAULT);
-			$stmt = $dbh->prepare("UPDATE account SET password=? WHERE id=?");
-			$stmt->execute([$hashed,$id]);
-			if ($stmt->rowCount()>0) {
-				return true;
-			}else {
-				return false;
-			}
+		$hashed = password_hash($pwd1,PASSWORD_DEFAULT);
+		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE id=?");
+		$stmt->execute([$hashed,$id]);
+		if ($stmt->rowCount()>0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 
@@ -668,6 +771,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 
 		public function addOTP($reference,$otp)
 		{
+
 			$dbh = DB();
 			$stmt = $dbh->prepare("UPDATE customer_transfer SET otp =? WHERE reference_number = ?");
 			$stmt->execute([$otp,$reference]);
@@ -691,7 +795,8 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 	}else {
 		return false;
 	}
-}
+      
+      }
 
 
 	public function getCustomerMessage($customer)
