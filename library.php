@@ -100,14 +100,9 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 		}
 	}
 
-	public function existingAccount($email)
-	{
-	  $stmt = $dbh->prepare("SELECT * FROM account WHERE email = ?");
-	  $stmt->execute([$email]);
-	  $data = $stmt->fetch(PDO::FETCH_ASSOC);
-	  return count($data);
 
-	}
+	
+	
 
 	public function firstNameCheck($firstName)
 	{

@@ -180,23 +180,28 @@ if (isset($_POST['account'])) {
 
                 <form method="post">
 
-                    <div class="form-group">
-                     
-<input type="text" name="first_name" class="form-control"  placeholder="Enter first name" required>
-                    </div>
+                   <div class="form-group">
+                   
+                     <select class="form-control" name="accnt_type" id="exampleFormControlSelect1" required>
+                          <option>Select Account</option>
+                          <option>Joint Account</option>
+                          <option>Savings Account</option>
+                          <option>Loans Account</option>
+                        </select>
+                   </div>
 
-                    <div class="form-group">
-                     
-<input type="text" name="maiden_name" class="form-control"  placeholder="Enter maiden name" >
-                    </div>
+                 <div class="form-group">
+                
+   <input type="password" name="password" class="form-control"  placeholder="Password" required>
+                 </div>
 
-                    <div class="form-group">
-                    
-<input type="text" name="last_name" class="form-control"  placeholder="Enter last name" required>
-                    </div>
+               <div class="form-group">
+              
+ <input type="password" name="confirm_password" class="form-control"  placeholder="Confirm password" required>
+               </div>
 
-                  
-                    <div class="form-group">
+
+               <div class="form-group">
                 <div type="hidden" id="spinner" class="spinner-border"></div>
                    
                </div>
@@ -205,7 +210,7 @@ if (isset($_POST['account'])) {
                  
                  
 
-  <button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Continue</button>
+  <button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Submit</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 

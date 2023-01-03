@@ -180,32 +180,31 @@ if (isset($_POST['account'])) {
 
                 <form method="post">
 
-                    <div class="form-group">
-                     
-<input type="text" name="first_name" class="form-control"  placeholder="Enter first name" required>
-                    </div>
+                   
 
                     <div class="form-group">
                      
-<input type="text" name="maiden_name" class="form-control"  placeholder="Enter maiden name" >
+                      <input type="date" name="birthday" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                    
-<input type="text" name="last_name" class="form-control"  placeholder="Enter last name" required>
+                   
+<input type="email" name="email" class="form-control"  placeholder="Enter email" required>
                     </div>
 
-                  
                     <div class="form-group">
+                     
+<input type="text" name="country" class="form-control"  placeholder="Enter country" required>
+                    </div>
+                     
+
+                <div class="form-group">
                 <div type="hidden" id="spinner" class="spinner-border"></div>
                    
                </div>
 
 
-                 
-                 
-
-  <button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Continue</button>
+<button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Continue</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
