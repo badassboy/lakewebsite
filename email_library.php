@@ -29,7 +29,7 @@ class Email{
 		    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 		    return count($data) ? true : false;
 
-			}catch(Exception $ex){
+			}catch(OutOfBoundsException $ex){
 				print($ex->getMessage());
 			}
 

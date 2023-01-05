@@ -12,31 +12,17 @@ if (isset($_POST['account'])) {
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   $maiden = $_POST['maiden_name'];
-  $birthday = $_POST['birthday'];
-  $email = $_POST['email'];
-  $country = $_POST['country'];
-  $address = $_POST['address'];
-  $phone = $_POST['mobile'];
-  $user_account = $_POST['accnt_type'];
-  $password = $_POST['password'];
-  echo $password;
-  $cpwd = $_POST['confirm_password'];
-  echo $cpwd;
+  
 
-  if ($bank->validEmail($email)) {
-      $msg = '<div class="alert alert-danger" role="alert">Invalid email</div>';
+  if ($bank->firstNameCheck($first_name)) {
+      $msg = '<div class="alert alert-danger" role="alert">No special letters allowed</div>';
   }
   // check for password match
-  elseif($bank->passwordMatch($password,$cpwd)){
-    $msg = '<div class="alert alert-danger" role="alert">Password should be the same</div>';
+  elseif($bank->lastNameCheck($last_name)){
+    $msg = '<div class="alert alert-danger" role="alert">no special letters allowed</div>';
   }
 
-  elseif($bank->passwordLength($password)){
-    $msg = '<div class="alert alert-danger" role="alert">Password too short</div>';
-  }
-  elseif ($bank->securedPassword($password)) {
-      $msg ="Password should contain one Upper case,lower case , number and a special character";
-  }
+  
   else {
     $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
     $phone,$user_account,$password);

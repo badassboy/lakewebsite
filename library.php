@@ -7,6 +7,69 @@ require("database.php");
 
 class Banking{
 
+	// this function insert data into mysql table.
+	public function insertData($table,$data){
+
+
+
+	try{
+
+		// sanitize and build columns name and placeholders for the prepared statement
+	$dbh = DB();
+	$columns = implode(",", array_keys($data));
+	$placeholders = ":". implode(", :", array_keys($data));
+	// build the insert statement
+	$sql = "INSERT INTO $table ($columns) VALUES ($placeholders)"; 
+	$stmt = $dbh->prepare($sql);
+	$stmt->execute($data);
+
+	}catch(UnexpectedValueException $ex){
+		print($ex->getMessage());
+
+	}
+   }
+
+
+   public function updateData($tableName,$data){
+   	
+   	try{
+   		$dbh = DB();
+   		// set clause for update statement
+   		$setClause = "";
+   		foreach($data as $columnName => $columnValue){
+   			$setClause.= "$columnName = :$columnName,";
+   		}
+   		// rremoves whitespaces from the clause statement
+
+   		$setClause = rtrim($setClause, ",");
+
+   		// where clause of the update statement
+   		$whereClause = "";
+   		foreach ($data as $columnName => $columnValue) {
+
+   			$whereClause.= "$columnName = :$columnName AND";
+   		}
+   		// removes whitespaces from the clause
+   		$whereClause = rtrim($whereClause, " AND ");
+
+   		// update statement
+   		$sql = $dbh->prepare("UPDATE $tableName SET $setClause WHERE $whereClause");
+   		// bind parameters
+   		foreach ($data as $columnName => $columnValue) {
+   			$stmt->bindValue(":$columnName", $columnValue);
+   		}
+   		// execute the statement
+   		$stmt->execute();
+   		
+
+
+
+   	}catch(UnexpectedValueException $ex){
+   		print($ex->getMessage());
+   	}
+
+   }
+
 	
 
 public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$country,$address,$phone,$accnt_type,$password)
@@ -46,6 +109,40 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	
 }
+
+
+
+ public function secondPageRegister($register_date,$email,$country){
+
+ 	$data = [
+
+ 		"register_date" => $register_date,
+ 		"email" => $email,
+ 		"country" => $country
+
+
+ 	];
+
+ 	$tableName = "account";
+
+    return $this->updateData($tableName,$data);
+
+ }
+
+ public function thirdPageRegister($accnt_type,$password){
+ 	$data = [
+
+ 		"accnt_type" => $accnt_type,
+ 		"password" => $password
+ 		// "country" => $country
+
+
+ 	];
+
+ 	$tableName = "account";
+ 	 return $this->updateData($tableName,$data);
+
+ }
 
 		
 
@@ -103,23 +200,27 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	
 	
-
+	// check for special characters ina string
 	public function firstNameCheck($firstName)
 	{
 		try{
 		  return preg_match('[@_!#$%^&*()<>?/|}{~:]', $firstName);
-		}catch(Exception $exception){
-		  print($exception->getMessage());
-		}
+		}catch(InvalidArgumentException $ex){
+			print($ex->getMessage());
+
+
+		 
+		 }
           
 	}
 
+	// check for special characters in a string
 	public function lastNameCheck($lastName)
 	{
 		try{
 		   return preg_match('[@_!#$%^&*()<>?/|}{~:]', $lastName);	
-		}catch(Exception $exception){
-			print($exception->getMessage());
+		}catch(InvalidArgumentException $ex){
+			print($ex->getMessage());
 		}
 	  
 	}
@@ -194,7 +295,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 		}
 
-		catch(Exception $ex){
+		catch(InvalidArgumentException $ex){
                  print($ex->getMessage());
 		}
 
@@ -210,8 +311,8 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 		    return (mb_strlen($password, "UTF-8")<6) ? true : false;
 		    
 
-		}catch(Exception $ex){
-		  print($ex->getMessage());
+		}catch(LengthException $ex){
+		 print($ex->getMessage());
 		}
 
 		
@@ -224,10 +325,13 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	{
 		try{
-			return ($password != $cpwd) ? true : false;
+			// return ($password != $cpwd) ? true : false;
+			// compare two string if they are the same
+			return(strcmp($password, $cpwd));
 
-		}catch(Exception $ex){
+		}catch(InvalidArgumentException $ex){
 			print($ex->getMessage());
+			
 		}
 
 		
@@ -242,7 +346,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 	{
 		try{
 		  return !filter_var($email,FILTER_VALIDATE_EMAIL) == true;
-		}catch(Exception $ex){
+		}catch(InvalidArgumentException $ex){
 			print($ex->getMessage());
 		}
 		
