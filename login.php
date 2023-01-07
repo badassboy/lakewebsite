@@ -1,5 +1,5 @@
 <?php  
-session_start();
+// session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -11,16 +11,36 @@ if (isset($_POST['login'])) {
   
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $remember_me = $_POST['remember_me'];
 
   if (empty($email)|| empty($password)) {
     $msg = "fields required";
-  }else {
+  }
+
+// this section extends user's session for a week once 
+  elseif(isset($remember_me)){
+    $user_login = $bank->loginUser($email,$password);
+    if ($user_login) {
+        
+        // store user's id in  a session for later usage
+         $_SESSION['id'] = $user_login['id'];
+        // user sssion last for a week when remember checkbox is ticked
+      session_set_cookie_params(3600*24*7);
+
+      
+    }
+
+  }
+  // keeps user login when session is not cleared from the browser
+  else {
     $user_login = $bank->loginUser($email,$password);
 
         if ($user_login) {
+
       $_SESSION['id'] = $user_login['id'];
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
+
       header("Location:user/homepage.php");
       // header("Location:user/login_code.php");
       exit();
@@ -75,6 +95,14 @@ if (isset($_POST['login'])) {
     <style type="text/css">
         .form-group input[type="password"]{
             width: 50%;
+        }
+
+        .form-group input[type="checkbox"]{
+            margin-top: 2%;
+        }
+
+        .form-check-label{
+            margin-top: 2%;
         }
     </style>
 </head>
@@ -150,8 +178,39 @@ if (isset($_POST['login'])) {
 
               <div class="form-group">
               <label>Password</label>
-                <input type="password" name="password" class="form-control"  placeholder="Password" required>
+                <input type="password" name="password" class="form-control"  placeholder="Password" required id="password">
+
               </div>
+
+              <div class="row">
+
+                <div class="col">
+                     <div class="form-group">
+                  <input class="form-check-input" type="checkbox" value="" onclick="togglePassword()">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Show password
+                  </label>
+              </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                  <input class="form-check-input" type="checkbox" value="" name="remember
+
+                  ">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Remember Me
+                  </label>
+              </div> 
+                </div>
+                  
+              </div>
+
+             
+
+              
+
+
 
     <button type="submit" name="login" class=" btn-primary" style="width:50%; margin-top: 3%;">Login</button> 
 
@@ -192,6 +251,21 @@ if (isset($_POST['login'])) {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+
+        function togglePassword(){
+
+            var passwordField = document.getElementById("password");
+            if (passwordField.type == "password") {
+                passwordField.type = "text";
+            }else{
+                passwordField.type = "password";
+            }
+
+        }
+
+    </script>
 </body>
 
 </html>

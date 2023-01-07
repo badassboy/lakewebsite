@@ -236,6 +236,8 @@ class Banking{
 
 	} 
 
+	
+
 	public function AuthenticatedUserInfo($id)
 	{
 		try{
