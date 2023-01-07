@@ -24,14 +24,19 @@ if (isset($_POST['account'])) {
 
   
   else {
-    $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
-    $phone,$user_account,$password);
-  if ($userAccount) {
-      $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
-  }else {
-      $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
 
-  }
+    $userAccount = $bank->createAccount($first_name,$last_name,$maiden);
+
+    // $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
+    // $phone,$user_account,$password);
+
+  // if ($userAccount) {
+  //     $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
+  // }else {
+  //     $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
+
+  // }
+
   }
 
   

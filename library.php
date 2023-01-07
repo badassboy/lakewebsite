@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -10,139 +11,102 @@ class Banking{
 	// this function insert data into mysql table.
 	public function insertData($table,$data){
 
-
-
 	try{
 
 		// sanitize and build columns name and placeholders for the prepared statement
 	$dbh = DB();
+	// var_dump($dbh);
 	$columns = implode(",", array_keys($data));
 	$placeholders = ":". implode(", :", array_keys($data));
 	// build the insert statement
 	$sql = "INSERT INTO $table ($columns) VALUES ($placeholders)"; 
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute($data);
+	$_SESSION["id"] = $dbh->lastInsertId();
+	// var_dump($_SESSION['id']);
 
-	}catch(UnexpectedValueException $ex){
-		print($ex->getMessage());
+	return ($stmt->rowCount()>0) ? $this->redirect("create_account2.php") : false;
 
-	}
+		}catch(UnexpectedValueException $ex){
+			print($ex->getMessage());
+
+		}
    }
 
+   
 
-   public function updateData($tableName,$data){
-   	
+
+
+   public function redirect($url){
    	try{
-   		$dbh = DB();
-   		// set clause for update statement
-   		$setClause = "";
-   		foreach($data as $columnName => $columnValue){
-   			$setClause.= "$columnName = :$columnName,";
-   		}
-   		// rremoves whitespaces from the clause statement
-
-   		$setClause = rtrim($setClause, ",");
-
-   		// where clause of the update statement
-   		$whereClause = "";
-   		foreach ($data as $columnName => $columnValue) {
-
-   			$whereClause.= "$columnName = :$columnName AND";
-   		}
-   		// removes whitespaces from the clause
-   		$whereClause = rtrim($whereClause, " AND ");
-
-   		// update statement
-   		$sql = $dbh->prepare("UPDATE $tableName SET $setClause WHERE $whereClause");
-   		// bind parameters
-   		foreach ($data as $columnName => $columnValue) {
-   			$stmt->bindValue(":$columnName", $columnValue);
-   		}
-   		// execute the statement
-   		$stmt->execute();
-   		
-
-
-
+   		header("Location: ".$url);
+   		exit();
    	}catch(UnexpectedValueException $ex){
    		print($ex->getMessage());
    	}
-
    }
 
 	
 
-public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$country,$address,$phone,$accnt_type,$password)
+// public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$country,$address,$phone,$accnt_type,$password)
+
+   public function createAccount($firstName,$lastName,$maiden)
 {
 
 
-	$dbh = DB();
-	$hashed = password_hash($password,PASSWORD_DEFAULT);
+	// $dbh = DB();
+	// $hashed = password_hash($password,PASSWORD_DEFAULT);
 	$initial_balance =  20.0;
 	$account_number = rand();
 	$login_code = rand();
-		// insert user account if account does not exist
-	$stmt = $dbh->prepare("INSERT INTO account(account_number,balance,first_name,last_name,maiden,birthday,email,country,address,phone,account_type,password,login_code) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-	$stmt->execute([$account_number,$initial_balance,$firstName,$lastName,$maiden,$birthday,$email,$country,$address,$phone,$accnt_type,$hashed,$login_code]);
-	
-	$inserted = $stmt->rowCount();
-	if ($inserted>0) {
-		// email login code to the user.
-		$to = $email;
-		$subject = "Login Security Code";
-		$msg = "Your login code is : '.$login_code.'";
+	$tableName = "account";
+	$user_data = [
+		"account_number" => $account_number,
+		"balance" => $initial_balance,
+		"first_name" => $firstName,
+		"last_name" => $lastName,
+		"maiden" => $maiden
+		];
 
-		$headers = array(
-			 "From: donotreply@lakesidecreditunion.com",
-			 "Content-type: text/html"
-			);
+		return $this->insertData($tableName,$user_data);
 
-			$mail = mail($to,$subject,$msg, implode("\r\n", $headers));
 
-		return true;
-	}else {
-		return $dbh->errorInfo();
-	}
-
-	
-
-	
 }
 
 
 
- public function secondPageRegister($register_date,$email,$country){
-
- 	$data = [
-
- 		"register_date" => $register_date,
- 		"email" => $email,
- 		"country" => $country
-
-
- 	];
-
- 	$tableName = "account";
-
-    return $this->updateData($tableName,$data);
+ public function secondPageRegister($register_date,$email,$country,$id){
+ 	$dbh = DB();
+ 	
+  
+	$stmt =$dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id =?"); 
+	$stmt->execute([$register_date,$email,$country,$id]);
+	return $stmt->rowCount()>0 ? $this->redirect("create_account3.php") : false;
 
  }
 
- public function thirdPageRegister($accnt_type,$password){
- 	$data = [
 
- 		"accnt_type" => $accnt_type,
- 		"password" => $password
- 		// "country" => $country
+ public function thirdPageRegister($accnt_type,$password,$id){
 
+ 				$dbh = DB();
+ 
+				
 
- 	];
-
- 	$tableName = "account";
- 	 return $this->updateData($tableName,$data);
+				$stmt =$dbh->prepare("UPDATE account SET account_type = ?, password = ? WHERE id = ?"); 
+				$stmt->execute([$accnt_type,$this->encryptPassword($password),$id]);
+				return ($stmt->rowCount()>0) ? $this->redirect("user/homepage.php") : false;
 
  }
+
+	 public function encryptPassword($password)
+	 {
+	 	return password_hash($password,PASSWORD_DEFAULT);
+	 }
+
+ 	
+
+ 
 
 		
 
@@ -155,6 +119,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 				$id = $row['id'];
+				$token = $row['token'];
 
 
 			// // Send email to user with the token in a link they can click on
@@ -286,23 +251,26 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 		
 	}
 
-	public function securedPassword($password)
-	{
-		try{
-			// check for capital letters, lower case characters,numbers and special characters
+	// public function securedPassword($password)
+	// {
+	// 	try{
+	// 		// check for capital letters, lower case characters,numbers and special characters
+	// 		for ($i=0; $i < ; $i++) { 
+	// 			// code...
+	// 		}
 
-		 return preg_match('@[A-Z]@', $password)|| preg_match('@[a-z]@', $password) || preg_match('@[0-9]@', $password) || preg_match('@[^\w]@', $password);
+		 
 
-		}
+	// 	}
 
-		catch(InvalidArgumentException $ex){
-                 print($ex->getMessage());
-		}
+	// 	catch(InvalidArgumentException $ex){
+   //               print($ex->getMessage());
+	// 	}
 
-		return false;
+	// 	return false;
 		
 		
-	}
+	// }
 
 	public function passwordLength($password){
 
@@ -345,7 +313,7 @@ public function createAccount($firstName,$lastName,$maiden,$birthday,$email,$cou
 
 	{
 		try{
-		  return !filter_var($email,FILTER_VALIDATE_EMAIL) == true;
+		  return filter_var($email,FILTER_VALIDATE_EMAIL) == false;
 		}catch(InvalidArgumentException $ex){
 			print($ex->getMessage());
 		}

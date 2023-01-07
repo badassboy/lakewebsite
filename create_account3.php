@@ -7,45 +7,40 @@ require("library.php");
 $bank = new Banking();
 
 $msg ="";
-if (isset($_POST['account'])) {
+if (isset($_POST['account']) && isset($_SESSION['id'])) {
   
-  $first_name = $_POST['first_name'];
-  $last_name = $_POST['last_name'];
-  $maiden = $_POST['maiden_name'];
-  $birthday = $_POST['birthday'];
-  $email = $_POST['email'];
-  $country = $_POST['country'];
-  $address = $_POST['address'];
-  $phone = $_POST['mobile'];
+  
   $user_account = $_POST['accnt_type'];
   $password = $_POST['password'];
-  echo $password;
+  // echo $password;
   $cpwd = $_POST['confirm_password'];
-  echo $cpwd;
+  // echo $cpwd;
 
-  if ($bank->validEmail($email)) {
-      $msg = '<div class="alert alert-danger" role="alert">Invalid email</div>';
-  }
+  $id = $_SESSION['id'];
+
+  
   // check for password match
-  elseif($bank->passwordMatch($password,$cpwd)){
+if($bank->passwordMatch($password,$cpwd)){
     $msg = '<div class="alert alert-danger" role="alert">Password should be the same</div>';
   }
 
   elseif($bank->passwordLength($password)){
     $msg = '<div class="alert alert-danger" role="alert">Password too short</div>';
   }
-  elseif ($bank->securedPassword($password)) {
-      $msg ="Password should contain one Upper case,lower case , number and a special character";
-  }
+ 
   else {
-    $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
-    $phone,$user_account,$password);
-  if ($userAccount) {
-      $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
-  }else {
-      $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
 
-  }
+            $registered = $bank->thirdPageRegister($user_account,$password,$id);
+
+  //   $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
+  //   $phone,$user_account,$password);
+  // if ($userAccount) {
+  //     $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
+  // }else {
+  //     $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
+
+  // }
+
   }
 
   
