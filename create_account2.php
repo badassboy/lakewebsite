@@ -4,7 +4,9 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require("library.php");
+// require("email_library.php");
 $bank = new Banking();
+// $user_email = new Email();
 
 
 
@@ -20,20 +22,21 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
   $country = $_POST['country'];
   
 
-  // if ($bank->validEmail($email)) {
-  //     $msg = '<div class="alert alert-danger" role="alert">Invalid email</div>';
-  // }
- 
-  // if {
+  if ($bank->validEmail($email)) {
+      $msg = '<div class="alert alert-danger" role="alert">Invalid email</div>';
+  }
+
+  elseif($bank->checkDuplicateEmail($email)){
+    $msg = '<div class="alert alert-danger" role="alert">Email already exist</div>';
+  }
+  
+  else{
     $userAccount = $bank->secondPageRegister($birthday,$email,$country,$id);
-  // if ($userAccount) {
-  //     $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
-  // }else {
-  //     $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
-
-  // }
-
-  // }
+  }
+ 
+  
+    
+ 
 
   
 

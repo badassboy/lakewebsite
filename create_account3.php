@@ -27,6 +27,10 @@ if($bank->passwordMatch($password,$cpwd)){
   elseif($bank->passwordLength($password)){
     $msg = '<div class="alert alert-danger" role="alert">Password too short</div>';
   }
+
+  // elseif($bank->securedPassword($password)){
+  //    $msg = '<div class="alert alert-danger" role="alert">Password should contain uppercase, lowercase and and numbers</div>';
+  // }
  
   else {
 
@@ -185,10 +189,25 @@ if($bank->passwordMatch($password,$cpwd)){
                         </select>
                    </div>
 
-                 <div class="form-group">
+                   <div class="row">
+
+                    <div class="col">
+                         <div class="form-group">
                 
-   <input type="password" name="password" class="form-control"  placeholder="Password" required>
-                 </div>
+   <input type="password" name="password" class="form-control"  placeholder="Password" id="password" required>
+                 </div> 
+                    </div>
+
+            <div class="col">
+               <input class="form-check-input" type="checkbox" value="" id="checkbox" onclick="togglePassword()">
+              <label class="form-check-label" for="defaultCheck1">
+                Show password
+              </label> 
+            </div>
+                       
+                   </div>
+
+               
 
                <div class="form-group">
               
@@ -254,6 +273,19 @@ if($bank->passwordMatch($password,$cpwd)){
              var spinner = document.getElementById("spinner");
             spinner.hide();   
         }
+
+         function togglePassword(){
+
+            var passwordField = document.getElementById("password");
+            if (passwordField.type == "password") {
+                passwordField.type = "text";
+            }else{
+                passwordField.type = "password";
+            }
+
+        }
+
+
         
 
     </script>

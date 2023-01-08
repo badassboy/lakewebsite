@@ -74,6 +74,29 @@ class Banking{
 
 }
 
+public function checkDuplicateEmail($email){
+	$dbh = DB();
+
+	try{
+
+			$stmt = $dbh->prepare("SELECT * FROM account WHERE email = ?");
+		    $stmt->execute([$email]);
+		    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		    foreach($data as $row){
+
+		    	$user_email = $row['email'];
+		    	return ($user_email == $email) ? true : false;
+
+		    }
+		    
+		   
+
+			}catch(PDOException $ex){
+				print($ex->getMessage());
+			}
+
+}
+
 
 
  public function secondPageRegister($register_date,$email,$country,$id){
@@ -102,6 +125,12 @@ class Banking{
 	 public function encryptPassword($password)
 	 {
 	 	return password_hash($password,PASSWORD_DEFAULT);
+	 }
+
+	 public function securedPassword($password)
+	 {
+	 	return preg_match('/[a-z]/',$password) &&  preg_match('/[A-Z]/',$password)
+	 	&& preg_match('/[0-9]/') ? true : false;
 	 }
 
  	
@@ -310,7 +339,7 @@ class Banking{
 
 	
 
-	// validate email
+	// chec for correct email
 	public function validEmail($email)
 
 	{
