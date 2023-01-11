@@ -11,8 +11,10 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
   
   
   $user_account = $_POST['accnt_type'];
+  // $password = "some text";
   $password = $_POST['password'];
   // echo $password;
+  // echo gettype($password);
   $cpwd = $_POST['confirm_password'];
   // echo $cpwd;
 
@@ -28,22 +30,16 @@ if($bank->passwordMatch($password,$cpwd)){
     $msg = '<div class="alert alert-danger" role="alert">Password too short</div>';
   }
 
-  // elseif($bank->securedPassword($password)){
-  //    $msg = '<div class="alert alert-danger" role="alert">Password should contain uppercase, lowercase and and numbers</div>';
+    // working on this feature
+  // elseif($bank->checkString($password)){
+  //    $msg = '<div class="alert alert-danger" role="alert">Password should contain  numbers and charcaters</div>';
   // }
  
   else {
 
             $registered = $bank->thirdPageRegister($user_account,$password,$id);
 
-  //   $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
-  //   $phone,$user_account,$password);
-  // if ($userAccount) {
-  //     $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
-  // }else {
-  //     $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
-
-  // }
+  
 
   }
 
@@ -96,11 +92,19 @@ if($bank->passwordMatch($password,$cpwd)){
         .form-group input[type="password"]{
             width: 50%;
             margin-top: 3%;
+            margin-bottom: 4px;
         }
 
         .already_login {
             margin-top: 2%;
         }
+
+        .btn-primary{
+            margin-top: -50px;
+            width: 50%;
+        }
+
+       
     </style>
 </head>
 
@@ -189,16 +193,16 @@ if($bank->passwordMatch($password,$cpwd)){
                         </select>
                    </div>
 
-                   <div class="row">
+                   <div class="form-row">
 
-                    <div class="col">
-                         <div class="form-group">
+                    <!-- <div class="col-md-6"> -->
+                         <div class="form-group col-md-6">
                 
    <input type="password" name="password" class="form-control"  placeholder="Password" id="password" required>
                  </div> 
-                    </div>
+                    <!-- </div> -->
 
-            <div class="col">
+            <div class="form-group col-md-3">
                <input class="form-check-input" type="checkbox" value="" id="checkbox" onclick="togglePassword()">
               <label class="form-check-label" for="defaultCheck1">
                 Show password
@@ -224,7 +228,7 @@ if($bank->passwordMatch($password,$cpwd)){
                  
                  
 
-  <button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Submit</button>
+  <button type="submit" name="account" class="btn btn-primary">Submit</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
@@ -245,7 +249,7 @@ if($bank->passwordMatch($password,$cpwd)){
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a> -->
 
 
     <!-- JavaScript Libraries -->

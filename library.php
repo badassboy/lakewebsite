@@ -127,11 +127,38 @@ public function checkDuplicateEmail($email){
 	 	return password_hash($password,PASSWORD_DEFAULT);
 	 }
 
-	 public function securedPassword($password)
-	 {
-	 	return preg_match('/[a-z]/',$password) &&  preg_match('/[A-Z]/',$password)
-	 	&& preg_match('/[0-9]/') ? true : false;
+	 // function not working for now.
+	 // This function check for uppercase, lowercase and numbers 
+	 // in user password using preg_match function
+	 public function checkString($str) {
+	 	// get the string length
+	 	$has_number = false;
+	 	$has_lowercase = false;
+	 	$charsCount = mb_strlen($str,'UTF-8');
+	 	
+	 	for ($i=0; $i <$charsCount ; $i++) { 
+	 		// The line of code  which stands for "multibyte string substr". This function works similar to the regular substr() function in PHP, but it is specifically designed to work with multibyte character encodings like UTF-8, which can use more than one byte per character
+	 		$char = mb_substr($str, $i,1,'UTF-8');
+	 		if (!$has_number) {
+	 			$has_number = is_numeric($char);
+	 		}
+
+	 		if (!$has_lowercase) {
+	 			$has_lowercase = ctype_lower($char);
+	 		}
+
+	 		if ($has_lowercase && $has_number) {
+	 			return false;
+	 		}
+
+	 		
+	 		// return(is_numeric($char) && ctype_alpha($char))? false : true; 
+	 		return true;
+	 		
+	 	}
+	 	
 	 }
+
 
  	
 
@@ -282,26 +309,7 @@ public function checkDuplicateEmail($email){
 		
 	}
 
-	// public function securedPassword($password)
-	// {
-	// 	try{
-	// 		// check for capital letters, lower case characters,numbers and special characters
-	// 		for ($i=0; $i < ; $i++) { 
-	// 			// code...
-	// 		}
-
-		 
-
-	// 	}
-
-	// 	catch(InvalidArgumentException $ex){
-   //               print($ex->getMessage());
-	// 	}
-
-	// 	return false;
-		
-		
-	// }
+	
 
 	public function passwordLength($password){
 

@@ -85,14 +85,36 @@ if (isset($_POST['account'])) {
 
     <style type="text/css">
         
-        .form-group input[type="password"]{
-            width: 50%;
-            margin-top: 3%;
-        }
+     
 
         .already_login {
             margin-top: 2%;
         }
+
+            /*login with google*/
+            .btn-google {
+                color: #545454;
+                background-color: #ffffff;
+                box-shadow: 0 1px 2px 1px #ddd
+            }
+
+          /*  .btn {
+border-radius: 2px;
+text-transform: capitalize;
+font-size: 15px;
+padding: 10px 19px;
+cursor: pointer
+}*/
+            /*login with google*/
+
+            .btn-primary{
+/*                background-color: red;*/
+                margin-top: -50px;
+
+            }
+
+
+        
     </style>
 </head>
 
@@ -155,7 +177,7 @@ if (isset($_POST['account'])) {
         <div class="container py-5">
             <!-- <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;"> -->
                 <h5 class="fw-bold text-primary text-uppercase">Account Creation</h5>
-                <h3 class="mb-0">Please fill below form to create your account</h3>
+                <h5 class="mb-0">Please fill below form to create your account</h5>
 
                 <?php 
 
@@ -183,7 +205,7 @@ if (isset($_POST['account'])) {
 
                     <div class="form-group">
                     
-<input type="text" name="last_name" class="form-control"  placeholder="Enter last name" required>
+<input type="text" name="last_name" class="form-control last_name"  placeholder="Enter last name" required>
                     </div>
 
                   
@@ -196,9 +218,13 @@ if (isset($_POST['account'])) {
                  
                  
 
-  <button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Continue</button>
+  <button type="submit" name="account" class="btn btn-primary" style="width:50%;">Continue</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
+
+  <div class="col-md-12"> <a class="btn btn-lg btn-google btn-block text-lowercase btn-outline" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> </div>
+
+
 
                 </form>
 

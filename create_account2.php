@@ -84,10 +84,12 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
 
     <style type="text/css">
         
-        .form-group input[type="password"]{
-            width: 50%;
-            margin-top: 3%;
-        }
+         .btn-primary{
+/*                background-color: red;*/
+                margin-top: -50px;
+                width: 50%;
+
+            }
 
         .already_login {
             margin-top: 2%;
@@ -154,7 +156,7 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
         <div class="container py-5">
             <!-- <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;"> -->
                 <h5 class="fw-bold text-primary text-uppercase">Account Creation</h5>
-                <h3 class="mb-0">Please fill below form to create your account</h3>
+                <h5 class="mb-0">Please fill below form to create your account</h5>
 
                 <?php 
 
@@ -194,7 +196,7 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
                </div>
 
 
-<button type="submit" name="account" class="btn btn-primary" style="width:50%; margin-top: 2%;">Continue</button>
+<button type="submit" name="account" class="btn btn-primary">Continue</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
@@ -215,7 +217,7 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a> -->
 
 
     <!-- JavaScript Libraries -->
