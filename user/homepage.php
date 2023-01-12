@@ -4,6 +4,7 @@ include("../library.php");
 $ch = new Banking();
 $customerName = "";
 if (isset($_SESSION['id'])) {
+  // var_dump($_SESSION['login_time']);
   $userInfo = $ch->AuthenticatedUserInfo($_SESSION['id']);
   $customerName = $userInfo['first_name'];
 

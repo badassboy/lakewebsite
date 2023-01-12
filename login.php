@@ -7,6 +7,9 @@ require("library.php");
 $bank = new Banking();
 
 $msg = "";
+
+// get current timestamp
+$current_time = time();
 if (isset($_POST['login'])) {
   
   $email = $_POST['email'];
@@ -19,6 +22,10 @@ if (isset($_POST['login'])) {
 
 // this section extends user's session for a week once 
   elseif(isset($remember_me)){
+
+    // get current time in seconds
+      $start = microtime(true);
+
     $user_login = $bank->loginUser($email,$password);
     if ($user_login) {
         
@@ -27,12 +34,17 @@ if (isset($_POST['login'])) {
         // user sssion last for a week when remember checkbox is ticked
       session_set_cookie_params(3600*24*7);
 
-      
+      // verify time takeb to login with valid details
+      $end = microtime(true);
+      $time_taken = $end - $start;
+    // $_SESSION['login_time'] = $time_taken;
     }
 
   }
   // keeps user login when session is not cleared from the browser
   else {
+     // get current time in seconds
+      $start = microtime(true);
     $user_login = $bank->loginUser($email,$password);
 
         if ($user_login) {
@@ -41,12 +53,33 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
 
-      header("Location:user/homepage.php");
+       // verify time takeb to login with valid details
+      $end = microtime(true);
+      $time_taken = $end - $start;
+    // $_SESSION['login_time'] = $time_taken;
+
+      // calculate timeout functionality of the login session
+      // if the user is authenticated, store the current timestamp in the session
+      $_SESSION['last_activity'] = $current_time;
+
+        header("Location:user/homepage.php");
       // header("Location:user/login_code.php");
       exit();
       $msg = '<div class="alert alert-success" role="alert">Login succcessful</div>';
     }else {
       $msg = '<div class="alert alert-danger" role="alert">Login failed.</div>';
+
+      // check if session has timed out
+      $session_timeout = 300; //5mins
+      if (isset($_SESSION['last_activity']) && ($current_time-$_SESSION['last_activity']) > $session_timeout) {
+          // the session has timeout , so destory the session and redirect the user to the login page
+        session_destroy();
+        $bank->redirect("login.php");
+
+      }else{
+        // update the last activity timestamp
+        $_SESSION['last_activity'] = $current_time;
+      }
     }
         
     
