@@ -292,6 +292,34 @@ public function checkDuplicateEmail($email){
 
 	} 
 
+	//This function uses cryptographically secure random number generator like random_int() for generating OTPs
+	public function generateCustomerOTP(){
+		return random_int(100, 999);
+	}
+
+	// this function insert customer otp code into the database
+	public function insertCustomerOTP($customer_id,$optCode){
+		$dbh = DB();
+		$stmt = $dbh->prepare("UPDATE account SET login_code = ? WHERE id = ?");
+		$stmt->execute([$optCode,$customer_id]);
+		return ($stmt->rowCount()>0) ? true : false;
+
+	}
+
+	public function emailCustomerOTP($optCode,$email){
+		// send email to loggedin user after email.
+			$to = $email;
+			$subject = "Login Code";
+			$message = "Your login code is .'$optCode'.";
+			$headers = array(
+			 "From: donotreply@lakesidecreditunion.com",
+			 "Content-type: text/html"
+			);
+
+			$mail = mail($to,$subject,$message, implode("\r\n", $headers));
+
+	}
+
 	
 
 	public function AuthenticatedUserInfo($id)
@@ -625,7 +653,8 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 		}
 	}
 
-	public function uploadProfile($file_name,$id){
+	public function uploadProfile($file_name,$id)
+	{
 		$dbh = DB();
 
 			 $path = "img/";

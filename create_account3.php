@@ -198,7 +198,7 @@ if($bank->passwordMatch($password,$cpwd)){
                     <!-- <div class="col-md-6"> -->
                          <div class="form-group col-md-6">
                 
-   <input type="password" name="password" class="form-control"  placeholder="Password" id="password" required>
+   <input type="password" name="password" class="form-control"  placeholder="Password" id="password" autocomplete="off" required>
                  </div> 
                     <!-- </div> -->
 
@@ -215,7 +215,7 @@ if($bank->passwordMatch($password,$cpwd)){
 
                <div class="form-group">
               
- <input type="password" name="confirm_password" class="form-control"  placeholder="Confirm password" required>
+ <input type="password" name="confirm_password" class="form-control"  placeholder="Confirm password" autocomplete="off" required>
                </div>
 
 

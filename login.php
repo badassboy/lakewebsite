@@ -62,6 +62,12 @@ if (isset($_POST['login'])) {
       // if the user is authenticated, store the current timestamp in the session
       $_SESSION['last_activity'] = $current_time;
 
+      // generate OTP Code, store in database and send to user email
+      $customerLoginCode = $bank->generateCustomerOTP();
+      $bank->insertCustomerOTP($_SESSION['id'],$customerLoginCode);
+      $bank->emailCustomerOTP($customerLoginCode,$email);
+
+
         header("Location:user/homepage.php");
       // header("Location:user/login_code.php");
       exit();
@@ -211,7 +217,7 @@ if (isset($_POST['login'])) {
 
               <div class="form-group">
               <label>Password</label>
-                <input type="password" name="password" class="form-control"  placeholder="Password" required id="password">
+                <input type="password" name="password" class="form-control"  placeholder="Password" required id="password" autocomplete="off">
 
               </div>
 
