@@ -33,9 +33,6 @@ class Banking{
 		}
    }
 
-   
-
-
 
    public function redirect($url){
    	try{
@@ -306,6 +303,7 @@ public function checkDuplicateEmail($email){
 
 	}
 
+	// this function emails the customer with the otp code
 	public function emailCustomerOTP($optCode,$email){
 		// send email to loggedin user after email.
 			$to = $email;

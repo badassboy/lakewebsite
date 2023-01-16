@@ -68,7 +68,7 @@ if (isset($_POST['login'])) {
       $bank->emailCustomerOTP($customerLoginCode,$email);
 
 
-        header("Location:user/homepage.php");
+        header("Location:otp.php");
       // header("Location:user/login_code.php");
       exit();
       $msg = '<div class="alert alert-success" role="alert">Login succcessful</div>';
