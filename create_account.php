@@ -3,7 +3,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+$login_button = "";
 require("library.php");
+include("config.php");
 $bank = new Banking();
 
 $msg ="";
@@ -27,24 +29,54 @@ if (isset($_POST['account'])) {
 
     $userAccount = $bank->createAccount($first_name,$last_name,$maiden);
 
-    // $userAccount = $bank->createAccount($first_name,$last_name,$maiden,$birthday,$email,$country,$address,
-    // $phone,$user_account,$password);
-
-  // if ($userAccount) {
-  //     $msg ='<div class="alert alert-success" role="alert">Account created.Go to login page and enter your details to login</div>';
-  // }else {
-  //     $msg ='<div class="alert alert-danger" role="alert">Account creation failed</div>';
-
-  // }
+    
 
   }
 
-  
-
-  
-   
-  
 }
+
+// this code is for authentication using google account
+// if (isset($_POST['googleLogin'])) {
+    if (isset($_GET['code'])) {
+    
+    // attenpt to exchange a code for a valid authentication token
+    $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+    // check for errors during authentication
+    if (!isset($token['error'])) {
+        // set the access token used for the request
+        $google_client->setAccessToken($token['access_token']);
+        // store the access token in a session_variable for future use
+        $_SESSION['access_token'] = $token['access_token'];
+        // create object for Google OAuth2 class
+        $google_service = new Google_Service_Oauth2($google_client);
+        // get user profile data from google
+        $data = $google_service->userinfo->get();
+        //access name, email and profile
+        if (!empty($data['email'])) {
+            $_SESSION['user_email_address'] = $data['email'];
+        }
+
+        if (!empty($data['gender'])) {
+            $_SESSION['user_gender'] = $data['gender'];
+        }
+
+        if (!empty($data['picture'])) {
+            $_SESSION['user_image'] = $data['picture'];
+        }
+
+    }
+
+
+
+    }else{
+        // display a link that takes users to Google for login
+        echo "<a href='".$google_client->createAuthUrl()."'>Google Login</a>";
+    }
+// }
+
+// authenticate code from Google OAuth Flow
+// get the code variable after the user has login into the goggle account
+
 
 
 
@@ -222,7 +254,14 @@ cursor: pointer
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
-  <div class="col-md-12"> <a class="btn btn-lg btn-google btn-block text-lowercase btn-outline" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> </div>
+  <!-- <div class="col-md-12"> -->
+    <button type="submit" name="googleLogin" >
+       
+    <a class="btn btn-lg btn-google btn-block text-lowercase btn-outline" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a>
+    </button>
+        
+    
+     <!-- </div> -->
 
 
 

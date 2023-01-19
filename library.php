@@ -895,6 +895,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 
 		public function allCustomerTransfer()
 		{
+			
 			$dbh = DB();
 			$stmt = $dbh->prepare("SELECT * FROM customers");
 			$stmt->execute();

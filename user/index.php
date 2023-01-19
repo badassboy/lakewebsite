@@ -4,7 +4,9 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require("../library.php");
+
 $bank = new Banking();
+
 
 $msg ="";
 if (isset($_POST['account'])) {
@@ -31,9 +33,6 @@ if (isset($_POST['account'])) {
       $msg = '<div class="alert alert-danger" role="alert">Login failed.</div>';
     }
   }
-  
- 
-   
   
 }
 
