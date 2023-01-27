@@ -37,6 +37,9 @@ if (isset($_POST['account'])) {
 
 // this code is for authentication using google account
 // if (isset($_POST['googleLogin'])) {
+
+if (isset($_POST['googleLogin'])) {
+
     if (isset($_GET['code'])) {
     
     // attenpt to exchange a code for a valid authentication token
@@ -64,6 +67,9 @@ if (isset($_POST['account'])) {
             $_SESSION['user_image'] = $data['picture'];
         }
 
+        header("Location: user/homepage.php");
+        exit;
+
     }
 
 
@@ -72,6 +78,9 @@ if (isset($_POST['account'])) {
         // display a link that takes users to Google for login
         echo "<a href='".$google_client->createAuthUrl()."'>Google Login</a>";
     }
+    
+}
+    
 // }
 
 // authenticate code from Google OAuth Flow
@@ -254,17 +263,21 @@ cursor: pointer
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
-  <!-- <div class="col-md-12"> -->
-    <button type="submit" name="googleLogin" >
-       
-    <a class="btn btn-lg btn-google btn-block text-lowercase btn-outline" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a>
-    </button>
+  
         
     
      <!-- </div> -->
 
 
 
+                </form>
+
+                <form method="post">
+                    <!-- <div class="col-md-12"> -->
+    <button type="submit" name="googleLogin">
+       
+    <a class="btn btn-lg btn-google btn-block text-lowercase btn-outline"><img src="https://img.icons8.com/color/16/000000/google-logo.png">Signup Using Google</a>
+    </button>
                 </form>
 
 
