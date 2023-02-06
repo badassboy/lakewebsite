@@ -19,7 +19,7 @@ $google_client->setClientId($api_keys->clientID());
 $google_client->setClientSecret($api_keys->secretkey());
 
 // redurect uri
-$google_client->setRedirectUri('https://lakesidecreditunion.com/create_account.php');
+$google_client->setRedirectUri('https://lakesidecreditunion.com/user/homepage.php');
 $google_client->addScope("email");
 $google_client->addScope("profile");
 

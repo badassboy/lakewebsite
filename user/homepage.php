@@ -1,6 +1,7 @@
 <?php
 // session_start();
 include("../library.php");
+include('../config.php');
 $ch = new Banking();
 $customerName = "";
 if (isset($_SESSION['id'])) {
@@ -13,6 +14,51 @@ if (isset($_SESSION['id'])) {
   exit;
 }
 
+
+// google login
+if($_SESSION['access_token'] == '') {
+ $ch->redirect("index.php");
+} 
+
+
+
+    if (isset($_GET['code'])) {
+    
+    // attenpt to exchange a code for a valid authentication token
+    $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+    // check for errors during authentication
+    if (!isset($token['error'])) {
+        // set the access token used for the request
+        $google_client->setAccessToken($token['access_token']);
+        // store the access token in a session_variable for future use
+        $_SESSION['access_token'] = $token['access_token'];
+        // create object for Google OAuth2 class
+        $google_service = new Google_Service_Oauth2($google_client);
+        // get user profile data from google
+        $data = $google_service->userinfo->get();
+        //access name, email and profile
+        if (!empty($data['email'])) {
+            $_SESSION['user_email_address'] = $data['email'];
+        }
+
+        if (!empty($data['gender'])) {
+            $_SESSION['user_gender'] = $data['gender'];
+        }
+
+        if (!empty($data['picture'])) {
+            $_SESSION['user_image'] = $data['picture'];
+        }
+
+
+    }
+
+
+
+    }
+    
+
+
+// end of google login
 ?>
 
 <!DOCTYPE html>

@@ -35,53 +35,23 @@ if (isset($_POST['account'])) {
 
 }
 
-// this code is for authentication using google account
-// if (isset($_POST['googleLogin'])) {
+ 
 
+// this code is for authentication using google account
 if (isset($_POST['googleLogin'])) {
 
-    if (isset($_GET['code'])) {
-    
-    // attenpt to exchange a code for a valid authentication token
-    $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
-    // check for errors during authentication
-    if (!isset($token['error'])) {
-        // set the access token used for the request
-        $google_client->setAccessToken($token['access_token']);
-        // store the access token in a session_variable for future use
-        $_SESSION['access_token'] = $token['access_token'];
-        // create object for Google OAuth2 class
-        $google_service = new Google_Service_Oauth2($google_client);
-        // get user profile data from google
-        $data = $google_service->userinfo->get();
-        //access name, email and profile
-        if (!empty($data['email'])) {
-            $_SESSION['user_email_address'] = $data['email'];
-        }
+    if(!isset($_SESSION['access_token'])) {
+   //Create a URL to obtain user authorization
+     echo "<a href='".$google_client->createAuthUrl()."'>Google Login</a>";
+  
+  } else {
+    $bank->redirect("user/homepage.php");
 
-        if (!empty($data['gender'])) {
-            $_SESSION['user_gender'] = $data['gender'];
-        }
+   
+  }
 
-        if (!empty($data['picture'])) {
-            $_SESSION['user_image'] = $data['picture'];
-        }
-
-        header("Location: user/homepage.php");
-        exit;
-
-    }
-
-
-
-    }else{
-        // display a link that takes users to Google for login
-        echo "<a href='".$google_client->createAuthUrl()."'>Google Login</a>";
-    }
     
 }
-    
-// }
 
 // authenticate code from Google OAuth Flow
 // get the code variable after the user has login into the goggle account
