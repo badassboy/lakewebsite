@@ -12,7 +12,6 @@ $google_client = new Google_Client();
 // load authorization credentials from client_secret json file
 $google_client->setAuthConfig('client_secret.json');
 
-
 // set the OAuth 2.0 client ID
 $google_client->setClientId($api_keys->clientID());
 // secret key
