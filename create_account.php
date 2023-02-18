@@ -38,7 +38,7 @@ if (isset($_POST['account'])) {
  
 
 // this code is for authentication using google account
-if (isset($_POST['googleLogin'])) {
+// if (isset($_POST['googleLogin'])) {
 
     if(!isset($_SESSION['access_token'])) {
    //Create a URL to obtain user authorization
@@ -51,7 +51,7 @@ if (isset($_POST['googleLogin'])) {
   }
 
     
-}
+// }
 
 // authenticate code from Google OAuth Flow
 // get the code variable after the user has login into the goggle account

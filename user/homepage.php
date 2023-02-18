@@ -4,21 +4,21 @@ include("../library.php");
 include('../config.php');
 $ch = new Banking();
 $customerName = "";
-if (isset($_SESSION['id'])) {
-  // var_dump($_SESSION['login_time']);
-  $userInfo = $ch->AuthenticatedUserInfo($_SESSION['id']);
-  $customerName = $userInfo['first_name'];
+// if (isset($_SESSION['id'])) {
+//   // var_dump($_SESSION['login_time']);
+//   $userInfo = $ch->AuthenticatedUserInfo($_SESSION['id']);
+//   $customerName = $userInfo['first_name'];
 
-}else {
-  header("Location:index.php");
-  exit;
-}
+// }else {
+//   header("Location:index.php");
+//   exit;
+// }
 
 
 // google login
-if($_SESSION['access_token'] == '') {
- $ch->redirect("index.php");
-} 
+// if($_SESSION['access_token'] == '') {
+//  $ch->redirect("index.php");
+// } 
 
 
 
