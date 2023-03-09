@@ -40,7 +40,7 @@ if (isset($_POST['account'])) {
 // this code is for authentication using google account
 // if (isset($_POST['googleLogin'])) {
 
-    if(!isset($_SESSION['access_token'])) {
+    if(!isset($_SESSION['user_token'])) {
    //Create a URL to obtain user authorization
      echo "<a href='".$google_client->createAuthUrl()."'>Google Login</a>";
   

@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
   
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $remember_me = $_POST['remember_me'];
+  // $remember_me = $_POST['remember'];
 
   if (empty($email)|| empty($password)) {
     $msg = "fields required";
@@ -66,9 +66,10 @@ if (isset($_POST['login'])) {
       $customerLoginCode = $bank->generateCustomerOTP();
       $bank->insertCustomerOTP($_SESSION['id'],$customerLoginCode);
       $bank->emailCustomerOTP($customerLoginCode,$email);
+      header("Location:user/homepage.php");
 
 
-        header("Location:otp.php");
+        // header("Location:otp.php");
       // header("Location:user/login_code.php");
       exit();
       $msg = '<div class="alert alert-success" role="alert">Login succcessful</div>';
@@ -234,10 +235,8 @@ if (isset($_POST['login'])) {
 
                 <div class="col">
                     <div class="form-group">
-                  <input class="form-check-input" type="checkbox" value="" name="remember
-
-                  ">
-                  <label class="form-check-label" for="defaultCheck1">
+          <input class="form-check-input" type="checkbox"  name="remember">
+                  <label class="form-check-label">
                     Remember Me
                   </label>
               </div> 

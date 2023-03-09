@@ -1,9 +1,10 @@
 <?php
-// session_start();
+session_start();
 include("../library.php");
 include('../config.php');
 $ch = new Banking();
 $customerName = "";
+$msg = "";
 // if (isset($_SESSION['id'])) {
 //   // var_dump($_SESSION['login_time']);
 //   $userInfo = $ch->AuthenticatedUserInfo($_SESSION['id']);
@@ -16,7 +17,7 @@ $customerName = "";
 
 
 // google login
-// if($_SESSION['access_token'] == '') {
+// if($_SESSION['user_token'] == '') {
 //  $ch->redirect("index.php");
 // } 
 
@@ -35,19 +36,44 @@ $customerName = "";
         // create object for Google OAuth2 class
         $google_service = new Google_Service_Oauth2($google_client);
         // get user profile data from google
-        $data = $google_service->userinfo->get();
-        //access name, email and profile
-        if (!empty($data['email'])) {
-            $_SESSION['user_email_address'] = $data['email'];
+        $gooogle_data = $google_service->userinfo->get();
+        $user_data = [
+
+          'email' => $gooogle_data['email'],
+          'first_name' => $gooogle_data['familyName'],
+          'last_name' => $gooogle_data['familyName'],
+          'gender' => $gooogle_data['gender'],
+          'full_name' => $gooogle_data['name'],
+          'picture' => $gooogle_data['picture'],
+          'verifiedEmail' => $gooogle_data['verifiedEmail'],
+          'token' => $gooogle_data['id']
+         
+        ];
+
+        // checking if user already exist in database
+        $sql = "SELECT * FROM google-login WHERE email = '{$user_data['email']}'";
+        $result = mysqli_query($conn,$sql);
+        if (mysqli_num_rows($result)>0) {
+          $user_info = mysqli_fetch_assoc($result);
+          $token = $user_info['token'];
+        }else{
+          // insert user records into database.
+          $sql = "INSERT INTO google-login (email,first_name,last_name,gender,full_name,picture,verifiedEmail,token) VALUES('{$user_data['email']}','{$user_data['first_name']}','{$user_data['last_name']}','{$user_data['gender']}','{$user_data['full_name']}','{$user_data['picture']}','{$user_data['verifiedEmail']}','{$user_data['token']}')";
+          $result = mysqli_query($conn,$sql);
+          if ($result) {
+            echo "User is created";
+            $token = $user_data['token'];
+          }else{
+            echo "User is not created";
+          }
         }
 
-        if (!empty($data['gender'])) {
-            $_SESSION['user_gender'] = $data['gender'];
-        }
 
-        if (!empty($data['picture'])) {
-            $_SESSION['user_image'] = $data['picture'];
-        }
+
+       // save user data into session
+  $_SESSION['user_token'] = $token;
+
+       
 
 
     }
@@ -88,6 +114,13 @@ $customerName = "";
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+    <?php
+
+    if (isset($msg)) {
+      echo $msg;
+    }
+
+     ?>
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">

@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -288,6 +288,8 @@ public function checkDuplicateEmail($email){
 
 
 	} 
+
+	
 
 	//This function uses cryptographically secure random number generator like random_int() for generating OTPs
 	public function generateCustomerOTP(){
