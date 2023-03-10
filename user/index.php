@@ -26,7 +26,7 @@ if (isset($_POST['account'])) {
       $_SESSION['id'] = $user_login['id'];
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
-      header("Location:login_code.php");
+      header("Location:homepage.php");
       exit();
       $msg = '<div class="alert alert-success" role="alert">Login succcessful</div>';
     }else {

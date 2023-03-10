@@ -7,7 +7,9 @@ require("library.php");
 $bank = new Banking();
 
 $msg ="";
-if (isset($_POST['account']) && isset($_SESSION['id'])) {
+if (isset($_POST['account'])) {
+
+   
   
   
   $user_account = $_POST['accnt_type'];
@@ -16,11 +18,10 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
   // echo $password;
   // echo gettype($password);
   $cpwd = $_POST['confirm_password'];
-  // echo $cpwd;
 
-  $id = $_SESSION['id'];
+   if (isset($_SESSION["id"])) {
 
-  
+
   // check for password match
 if($bank->passwordMatch($password,$cpwd)){
     $msg = '<div class="alert alert-danger" role="alert">Password should be the same</div>';
@@ -37,11 +38,19 @@ if($bank->passwordMatch($password,$cpwd)){
  
   else {
 
-        $registered = $bank->thirdPageRegister($user_account,$password,$id);
+        $registered = $bank->thirdPageRegister($user_account,$password,$_SESSION["id"]);
+
+}
+
+        
+    }
+
+
+ 
 
   
 
-  }
+ 
 
   
 

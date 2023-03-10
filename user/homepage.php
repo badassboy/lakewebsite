@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include("../library.php");
 // include('../config.php');
 $ch = new Banking();

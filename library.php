@@ -1,12 +1,16 @@
 <?php
-// session_start();
+session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require("database.php");
+	// $_SESSION["id"] = "";
+// $user_id = "";
 
 class Banking{
+
+	// public $user_id;
 
 	// this function insert data into mysql table.
 	public function insertData($table,$data){
@@ -22,6 +26,7 @@ class Banking{
 	$sql = "INSERT INTO $table ($columns) VALUES ($placeholders)"; 
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute($data);
+	// $user_id = $dbh->lastInsertId();
 	$_SESSION["id"] = $dbh->lastInsertId();
 	// var_dump($_SESSION['id']);
 
@@ -96,12 +101,13 @@ public function checkDuplicateEmail($email){
 
 
 
- public function secondPageRegister($register_date,$email,$country,$id){
+ public function secondPageRegister($register_date,$email,$country, $id){
  	$dbh = DB();
  	
+
   
-	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ?"); 
-	$stmt->execute([$register_date,$email,$country,$id]);
+	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ? "); 
+	$stmt->execute([$register_date,$email,$country, $id]);
 	return ($stmt->rowCount()>0) ? $this->redirect("create_account3.php") : false;
 
  }
@@ -114,7 +120,7 @@ public function checkDuplicateEmail($email){
 				
 
 				$stmt =$dbh->prepare("UPDATE account SET account_type = ?, password = ? WHERE id = ?"); 
-				$stmt->execute([$accnt_type,$this->encryptPassword($password),$id]);
+				$stmt->execute([$accnt_type,$this->encryptPassword($password), $id]);
 				return ($stmt->rowCount()>0) ? $this->redirect("user/homepage.php") : false;
 
  }

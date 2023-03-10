@@ -13,17 +13,20 @@ $bank = new Banking();
 $msg ="";
 
 
-if (isset($_POST['account']) && isset($_SESSION['id'])) {
+if (isset($_POST['customer'])) {
 
-   
-  $id = $_SESSION['id'];
-  var_dump($id);
+ 
+         
+  if (isset($_SESSION["id"])) {
+
+
+     // var_dump($id);
   $birthday = $_POST['birthday'];
-  echo $birthday;
+  // echo $birthday;
   $email = $_POST['email'];
-  echo $email;
+  // echo $email;
   $country = $_POST['country'];
-  echo $country;
+  // echo $country;
   
 
   if ($bank->validEmail($email)) {
@@ -35,8 +38,20 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
   }
   
   else{
-    $userAccount = $bank->secondPageRegister($birthday,$email,$country,$id);
+    $userAccount = $bank->secondPageRegister($birthday,$email,$country,$_SESSION["id"]);
   }
+
+
+      
+   } else {
+    echo "false";
+   }
+  // echo $id;
+
+ 
+    
+   
+   
  
   
     
@@ -200,7 +215,7 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
                </div>
 
 
-<button type="submit" name="account" class="btn btn-primary">Continue</button>
+<button type="submit" name="customer" class="btn btn-primary">Continue</button>
 
   <p class="already_login">Already have an ccount? <a href="login.php">Login</a></p>
 
