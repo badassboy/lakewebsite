@@ -100,9 +100,9 @@ public function checkDuplicateEmail($email){
  	$dbh = DB();
  	
   
-	$stmt =$dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id =?"); 
+	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ?"); 
 	$stmt->execute([$register_date,$email,$country,$id]);
-	return $stmt->rowCount()>0 ? $this->redirect("create_account3.php") : false;
+	return ($stmt->rowCount()>0) ? $this->redirect("create_account3.php") : false;
 
  }
 

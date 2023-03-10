@@ -26,12 +26,12 @@ $google_client->addScope("email");
 $google_client->addScope("profile");
 
 // database connection
-$hostname = "localhost";
-$username = "";
-$password = "";
-$database = "banking";
+// $hostname = "localhost";
+// $username = "";
+// $password = "";
+// $database = "banking";
 
-$conn = mysqli_connect($hostname,$username,$password,$database);
+// $conn = mysqli_connect($hostname,$username,$password,$database);
 
 
 

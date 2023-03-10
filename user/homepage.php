@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../library.php");
-include('../config.php');
+// include('../config.php');
 $ch = new Banking();
 $customerName = "";
 $msg = "";
@@ -23,64 +23,64 @@ $msg = "";
 
 
 
-    if (isset($_GET['code'])) {
+  //   if (isset($_GET['code'])) {
     
-    // attenpt to exchange a code for a valid authentication token
-    $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
-    // check for errors during authentication
-    if (!isset($token['error'])) {
-        // set the access token used for the request
-        $google_client->setAccessToken($token['access_token']);
-        // store the access token in a session_variable for future use
-        $_SESSION['access_token'] = $token['access_token'];
-        // create object for Google OAuth2 class
-        $google_service = new Google_Service_Oauth2($google_client);
-        // get user profile data from google
-        $gooogle_data = $google_service->userinfo->get();
-        $user_data = [
+  //   // attenpt to exchange a code for a valid authentication token
+  //   $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+  //   // check for errors during authentication
+  //   if (!isset($token['error'])) {
+  //       // set the access token used for the request
+  //       $google_client->setAccessToken($token['access_token']);
+  //       // store the access token in a session_variable for future use
+  //       $_SESSION['access_token'] = $token['access_token'];
+  //       // create object for Google OAuth2 class
+  //       $google_service = new Google_Service_Oauth2($google_client);
+  //       // get user profile data from google
+  //       $gooogle_data = $google_service->userinfo->get();
+  //       $user_data = [
 
-          'email' => $gooogle_data['email'],
-          'first_name' => $gooogle_data['familyName'],
-          'last_name' => $gooogle_data['familyName'],
-          'gender' => $gooogle_data['gender'],
-          'full_name' => $gooogle_data['name'],
-          'picture' => $gooogle_data['picture'],
-          'verifiedEmail' => $gooogle_data['verifiedEmail'],
-          'token' => $gooogle_data['id']
+  //         'email' => $gooogle_data['email'],
+  //         'first_name' => $gooogle_data['familyName'],
+  //         'last_name' => $gooogle_data['familyName'],
+  //         'gender' => $gooogle_data['gender'],
+  //         'full_name' => $gooogle_data['name'],
+  //         'picture' => $gooogle_data['picture'],
+  //         'verifiedEmail' => $gooogle_data['verifiedEmail'],
+  //         'token' => $gooogle_data['id']
          
-        ];
+  //       ];
 
-        // checking if user already exist in database
-        $sql = "SELECT * FROM google-login WHERE email = '{$user_data['email']}'";
-        $result = mysqli_query($conn,$sql);
-        if (mysqli_num_rows($result)>0) {
-          $user_info = mysqli_fetch_assoc($result);
-          $token = $user_info['token'];
-        }else{
-          // insert user records into database.
-          $sql = "INSERT INTO google-login (email,first_name,last_name,gender,full_name,picture,verifiedEmail,token) VALUES('{$user_data['email']}','{$user_data['first_name']}','{$user_data['last_name']}','{$user_data['gender']}','{$user_data['full_name']}','{$user_data['picture']}','{$user_data['verifiedEmail']}','{$user_data['token']}')";
-          $result = mysqli_query($conn,$sql);
-          if ($result) {
-            echo "User is created";
-            $token = $user_data['token'];
-          }else{
-            echo "User is not created";
-          }
-        }
+  //       // checking if user already exist in database
+  //       $sql = "SELECT * FROM google-login WHERE email = '{$user_data['email']}'";
+  //       $result = mysqli_query($conn,$sql);
+  //       if (mysqli_num_rows($result)>0) {
+  //         $user_info = mysqli_fetch_assoc($result);
+  //         $token = $user_info['token'];
+  //       }else{
+  //         // insert user records into database.
+  //         $sql = "INSERT INTO google-login (email,first_name,last_name,gender,full_name,picture,verifiedEmail,token) VALUES('{$user_data['email']}','{$user_data['first_name']}','{$user_data['last_name']}','{$user_data['gender']}','{$user_data['full_name']}','{$user_data['picture']}','{$user_data['verifiedEmail']}','{$user_data['token']}')";
+  //         $result = mysqli_query($conn,$sql);
+  //         if ($result) {
+  //           echo "User is created";
+  //           $token = $user_data['token'];
+  //         }else{
+  //           echo "User is not created";
+  //         }
+  //       }
 
 
 
-       // save user data into session
-  $_SESSION['user_token'] = $token;
+  //      // save user data into session
+  // $_SESSION['user_token'] = $token;
 
        
 
 
-    }
+  //   }
 
 
 
-    }
+  //   }
     
 
 

@@ -17,9 +17,13 @@ if (isset($_POST['account']) && isset($_SESSION['id'])) {
 
    
   $id = $_SESSION['id'];
+  var_dump($id);
   $birthday = $_POST['birthday'];
+  echo $birthday;
   $email = $_POST['email'];
+  echo $email;
   $country = $_POST['country'];
+  echo $country;
   
 
   if ($bank->validEmail($email)) {
