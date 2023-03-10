@@ -37,7 +37,7 @@ if($bank->passwordMatch($password,$cpwd)){
  
   else {
 
-            $registered = $bank->thirdPageRegister($user_account,$password,$id);
+        $registered = $bank->thirdPageRegister($user_account,$password,$id);
 
   
 

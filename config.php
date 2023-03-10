@@ -27,7 +27,7 @@ $google_client->addScope("profile");
 
 // database connection
 $hostname = "localhost";
-$username = "root";
+$username = "";
 $password = "";
 $database = "banking";
 

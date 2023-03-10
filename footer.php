@@ -20,7 +20,7 @@
                             </div> -->
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+1 575-449-7637</p>
+                                <p class="mb-0">(505)300-3288</p>
                             </div>
 
                            
