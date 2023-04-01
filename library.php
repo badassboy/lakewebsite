@@ -5,12 +5,11 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require("database.php");
-	// $_SESSION["id"] = "";
-// $user_id = "";
+
 
 class Banking{
 
-	// public $user_id;
+
 
 	// this function insert data into mysql table.
 	public function insertData($table,$data){
@@ -26,7 +25,7 @@ class Banking{
 	$sql = "INSERT INTO $table ($columns) VALUES ($placeholders)"; 
 	$stmt = $dbh->prepare($sql);
 	$stmt->execute($data);
-	// $user_id = $dbh->lastInsertId();
+	
 	$_SESSION["id"] = $dbh->lastInsertId();
 	// var_dump($_SESSION['id']);
 
