@@ -1,8 +1,7 @@
 <?php 
 
 session_start(); 
-header("Location: https://www.xvideos.com/");
-die(); 
+
 
 // if (!isset($_SESSION['id'])) {
 //     unset($_SESSION['id']);
