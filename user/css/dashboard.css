@@ -1,0 +1,153 @@
+body,
+    html {
+      height: 100%;
+    }
+    /* workaround modal-open padding issue */
+    
+    body.modal-open {
+      padding-right: 0 !important;
+    }
+
+    .navbar{
+      display: none;
+    }
+    
+    #sidebar {
+      padding-left: 0;
+    }
+
+    .card-body{
+      height: 100px;
+      background-color: #4d4d4d;
+
+    }
+
+    .first {
+      background-image: url("https://images.unsplash.com/photo-1601370552761-d129028bd833?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1467");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 200px;
+      padding-top: 5%;
+    }
+
+    .second {
+      background-color:#e6e6e6;
+      height: 600px;
+      padding-top: 2%;
+    }
+
+    #main{
+      margin-top: 2%;
+    }
+
+    .mb-1{
+      font-size: 16px;
+    }
+
+    .nav  li a{
+      color: #595959;
+    }
+    /*
+
+
+ * Off Canvas at medium breakpoint
+ * --------------------------------------------------
+ */
+    
+    @media screen and (max-width: 48em) {
+      body {
+        background-color: red;
+      }
+
+   
+
+     
+
+      .first{
+        height: 455px;
+      }
+
+      .second{
+        height: 1200px;
+      }
+      .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+      }
+      .row-offcanvas-left .sidebar-offcanvas {
+        left: -33%;
+      }
+      .row-offcanvas-left.active {
+        left: 33%;
+        margin-left: -6px;
+      }
+      .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 33%;
+        height: 100%;
+      }
+    }
+    /*
+ * Off Canvas wider at sm breakpoint
+ * --------------------------------------------------
+ */
+    
+    @media screen and (max-width: 34em) {
+      body {
+        background-color: yellow;
+      }
+
+      .first{
+        height: 450px;
+
+      }
+
+      .second {
+        height: 1200px;
+      }
+
+      footer{
+        display: none;
+      }
+
+      .
+      .row-offcanvas-left .sidebar-offcanvas {
+        left: -45%;
+      }
+      .row-offcanvas-left.active {
+        left: 45%;
+        margin-left: -6px;
+      }
+      .sidebar-offcanvas {
+        width: 45%;
+      }
+    }
+    
+    .card {
+      overflow: hidden;
+    }
+    
+    .card-block .rotate {
+      z-index: 8;
+      float: right;
+      height: 100%;
+    }
+    
+    .card-block .rotate i {
+      color: rgba(20, 20, 20, 0.15);
+      position: absolute;
+      left: 0;
+      left: auto;
+      right: -10px;
+      bottom: 0;
+      display: block;
+      -webkit-transform: rotate(-44deg);
+      -moz-transform: rotate(-44deg);
+      -o-transform: rotate(-44deg);
+      -ms-transform: rotate(-44deg);
+      transform: rotate(-44deg);
+    }
