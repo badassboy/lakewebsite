@@ -7,9 +7,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Bootstrap 4 Dashboard</title>
+  <title>lakesideCreditUnion</title>
   <base target="_self">
-  <meta name="description" content="A Bootstrap 4 admin dashboard theme that will get you started. The sidebar toggles off-canvas on smaller screens. This example also include large stat blocks, modal and cards. The top navbar is controlled by a separate hamburger toggle button."
+  <meta name="description" content="A banking website"
   />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google" value="notranslate">
@@ -23,6 +23,10 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
   <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
 
 
@@ -66,11 +70,20 @@
         <ul class="nav flex-column pl-1">
           <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
          
-          <li class="nav-item"><a class="nav-link" href="#">Account</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Transfer</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Deposit Check</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Payment</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Messages</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><span><i class="fa fa-money"></i></span> Account</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">
+            <span><i class="fa fa-exchange"></i></span> Transfer</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="">
+            <span><i class="fa fa-money"></i></span> Deposit Check</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="">
+            <span><i class="fa fa-money"></i></span> Payment</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="">
+            <span><i class="fa fa-comments-o"></i></span> Messages</a></li>
           
         </ul>
       </div>
@@ -105,7 +118,7 @@
             <div class="card card-inverse">
               <div class="card-body">
                 <div class="rotate">
-                  <i class="fa fa-user fa-2x"></i>
+                  <i class="fa fa-exchange fa-2x"></i>
                 </div>
                 <h6 class="text-uppercase">Transfer</h6>
                 <!-- <h1 class="display-2">134</h1> -->
@@ -117,7 +130,7 @@
             <div class="card card-inverse">
               <div class="card-body">
                 <div class="rotate">
-                  <i class="fa fa-list fa-2x"></i>
+                  <i class="fa fa-money fa-2x"></i>
                 </div>
                 <h6 class="text-uppercase">Deposit</h6>
                 <!-- <h1 class="display-1">87</h1> -->
@@ -129,7 +142,7 @@
             <div class="card card-inverse">
               <div class="card-body">
                 <div class="rotate">
-                  <i class="fa fa-twitter fa-2x"></i>
+                  <i class="fa fa-money fa-2x"></i>
                 </div>
                 <h6 class="text-uppercase">Pay a bill</h6>
                 <!-- <h1 class="display-1">125</h1> -->
@@ -141,7 +154,7 @@
             <div class="card card-inverse">
               <div class="card-body">
                 <div class="rotate">
-                  <i class="fa fa-share fa-2x"></i>
+                  <i class="fa fa-comments-o fa-2x"></i>
                 </div>
                 <h6 class="text-uppercase">Message</h6>
                 <!-- <h1 class="display-1">36</h1> -->
@@ -320,9 +333,9 @@
 
   </div>
   <!--/.container-->
-  <footer class="container-fluid">
+  <!-- <footer class="container-fluid">
     <p class="text-right small">©2016-2017 Company</p>
-  </footer>
+  </footer> -->
 
 
   <!-- Modal -->

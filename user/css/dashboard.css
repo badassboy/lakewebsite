@@ -1,6 +1,7 @@
 body,
     html {
       height: 100%;
+      font-family: 'Roboto', sans-serif;
     }
     /* workaround modal-open padding issue */
     
@@ -56,9 +57,9 @@ body,
  */
     
     @media screen and (max-width: 48em) {
-      body {
+     /* body {
         background-color: red;
-      }
+      }*/
 
    
 
@@ -97,9 +98,9 @@ body,
  */
     
     @media screen and (max-width: 34em) {
-      body {
+     /* body {
         background-color: yellow;
-      }
+      }*/
 
       .first{
         height: 450px;
