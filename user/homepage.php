@@ -68,12 +68,12 @@
     <div class="row row-offcanvas row-offcanvas-left">
       <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
         <ul class="nav flex-column pl-1">
-          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="homepage.php">Dashboard</a></li>
          
           <li class="nav-item">
-            <a class="nav-link" href="#"><span><i class="fa fa-money"></i></span> Account</a>
+            <a class="nav-link" href="accounts.php"><span><i class="fa fa-money"></i></span> Account</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#">
+          <li class="nav-item"><a class="nav-link" href="transactions.php">
             <span><i class="fa fa-exchange"></i></span> Transfer</a>
           </li>
           <li class="nav-item"><a class="nav-link" href="">
@@ -186,7 +186,7 @@
     </div>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Checkings
-              <span class="badge badge-primary badge-pill">14</span>
+              <span class="badge badge-primary badge-pill">$20</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Savings

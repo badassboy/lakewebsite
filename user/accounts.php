@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include("../library.php");
 $ch = new Banking();
 
@@ -51,12 +51,19 @@ $ch = new Banking();
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.css">
 
+     <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+
     <style type="text/css">
 
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
 
         .appointment{
@@ -120,6 +127,28 @@ $ch = new Banking();
             margin-bottom: 2%;
         }
 
+        button[type="submit"] {
+            color: white;
+            border-radius: 7%;
+        }
+
+        .card{
+            border: 2px solid  #e6e6e6;
+        }
+
+        .card-text{
+            color: #0d0d0d;
+/*            font-weight: normal;*/
+            font-size: 14px;
+        }
+
+        .card-link{
+            color:  #4da6ff;
+            font-weight: bolder;
+        }
+
+
+
 
 
 
@@ -134,7 +163,7 @@ $ch = new Banking();
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>LEMONFIRM</h3>
+                <h5>LakesideCreditUnion</h5>
             </div>
 
             <ul class="list-unstyled components">
@@ -142,12 +171,12 @@ $ch = new Banking();
 
 
             <li>
-                <a href="#" id="appointment" data-target="one" class="test">Account Details</a>
+                <a href="#" id="appointment" data-target="one" class="test">Account Dashboard</a>
             </li>
 
-           <!--  <li>
+            <li>
                 <a href="#" id="event" data-target="two" class="test">All Accounts</a>
-            </li> -->
+            </li>
 
            <!--  <li>
                 <a href="#" id="fund" data-target="three" class="test">Fund Account</a>
@@ -181,8 +210,89 @@ $ch = new Banking();
 
             <div class="container appointment show" id="one">
 
+                <div class="row">
+
+                    <div class="col-sm">
+                         <button type="submit" class="btn btn-primary">Pay bills</button> 
+                    </div>
+                    <div class="col-sm">
+                         <button type="submit" class="btn btn-primary">Security Center</button>
+                    </div>
+                    <div class="col-sm">
+                      
+                    <button type="submit" class="btn btn-primary">Store cards</button>  
+                    </div>
+
+                  
+                   </div>
+                   <br>
+
+                   <!-- end of second row -->
+                   <div class="row">
+
+                    <div class="col-sm">
+                        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Take action</h5>
+  
+    <p class="card-text">Your account is ready to use. Want to add money?</p>
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Add money</a>
+  </div>
+</div>
+                    </div>
+
+                    <div class="col-sm">
+                        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Today snapshot</h5>
+  
+    <p class="card-text">Top your credit and win more loans.</p>
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Top Here</a>
+  </div>
+</div>
+                    </div>
+
+                    <div class="col-sm">
+                        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Account</h5>
+    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+    <p class="card-text">Available balance: <span>$20</span></p>
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <!-- <a href="#" class="card-link">Another link</a> -->
+  </div>
+</div>
+                    </div>
+                       
+                   </div>
+
                
-               <table class="table">
+              
+
+                                           
+                     
+
+             
+                    
+
+                                         
+
+                    
+                     
+
+
+                        
+             
+            
+               
+            </div>
+
+            <!-- show all ccount -->
+        <div class="container event" id="two">
+
+              <table class="table">
 
             <thead>
               <tr>
@@ -218,48 +328,7 @@ $ch = new Banking();
 
             </tbody>
 
-            </table>      
-
-                                           
-                     
-
-             
-                    
-
-                                         
-
-                    
-                     
-
-
-                        
-             
-            
-               
-            </div>
-
-            <!-- show all ccount -->
-        <div class="container event" id="two">
-
-               <table class="table">
-
-            <thead>
-              <tr>
-                
-                <th scope="col">Account Number</th>
-                <th scope="col">Account Name</th>
-                <th scope="col">Balance</th>
-               <th scope="col">Email</th>
-                <th scope="col">Verify</th>
-                <th scope="col">Created</th>
-                <th scope="col">Action</th>
-
-              </tr>
-            </thead>
-
-            <tbody></tbody>
-
-            </table>
+            </table>       
               
             </div>
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include("../library.php");
 $ch = new Banking();
 $msg = "";
@@ -60,12 +60,18 @@ if ($transfer) {
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.css">
 
+     <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
     <style type="text/css">
 
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+             font-family: 'Roboto', sans-serif;
         }
 
         .appointment{
@@ -97,6 +103,14 @@ if ($transfer) {
             display: none;
         }
 
+        .deposit{
+            background-color:rgb(255, 255, 255);
+                height: 500px;
+                padding-top: 3%;
+                display: none;
+
+        }
+
         .show {
           display: block;
         }
@@ -120,16 +134,24 @@ if ($transfer) {
 
 
             <li>
-                <a href="#" id="appointment" data-target="one" class="test">Deposit</a>
+                <a href="#" id="appointment" data-target="one" class="test">
+                <span><i class="fa fa-money" aria-hidden="true"></i></span> Pay bills</a>
             </li>
 
             <li>
-                <a href="#" id="event" data-target="two" class="test">Withdrawal</a>
+                <a href="#" id="event" data-target="two" class="test">
+                    <span><i class="fa fa-usd" aria-hidden="true"></i></span> Send Money</a>
             </li>
 
 
             <li>
-                <a href="#" id="transfer" data-target="three" class="test">Transfers</a>
+                <a href="#" id="transfer" data-target="three" class="test">
+                    <span><i class="fa fa-exchange" aria-hidden="true"></i></span> Transfers</a>
+            </li>
+
+             <li>
+                <a href="#" id="deposit" data-target="four" class="test">
+                 <span><i class="fa fa-money" aria-hidden="true"></i></span> Deposit</a>
             </li>
          
            
@@ -166,40 +188,69 @@ if ($transfer) {
 
             <div class="container appointment show" id="one">
 
-                           
-                <table class="table">
+                     <form method="post"  action="">
 
-             <thead>
-               <tr>
-                 
-                 <th scope="col">Name</th>
-                 <th scope="col">Amount</th>
-                 <th scope="col">Date</th>
-                 <th scope="col">TransactionID</th>
+                               <div class="row">
 
-               </tr>
-             </thead>
+                                <div class="col">
+                                    <div class="form-group">
+                         <label>Account Number</label>
+                         <div class="form-group">
+                           <input type="text" class="form-control" name="sender" placeholder="Example:1234567" required>
+                            
+                          </div>
+                       </div>  
+                                </div>
 
-             <tbody>
-                <?php 
+                                 <div class="col">
+                                    <div class="form-group">
+                         
+                         
+                           <label for="exampleFormControlSelect1">Type of bill</label>
+                              <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Select</option>
+                                <option>Utilities</option>
+                                <option>TV & Entertainment</option>
+                                <option>School fees</option>
+                                <option>General Payment</option>
+                              </select>
+                            
+                        
+                       </div>  
+                                </div>
 
-                $user_deposit = $ch->getDeposit();
-                foreach ($user_deposit as $row) {
-                    echo '
-                            <tr>
-                                <td>'.$row['first_name'].'</td>
-                                <td>'.$row['amount'].'</td>
-                                <td>'.$row['deposit_date'].'</td>
-                                <td>'.$row['transactionID'].'</td>
-                            </tr>
-                    ';
-                }
 
-                ?>
-                 
-             </tbody>
+                                   
+                               </div>       
 
-             </table>
+                      
+                       <br>
+
+                         
+                <div class="form-group">
+         <label>Amount</label>
+         <input type="text" step="any" min="1" name="amount" class="form-control"  placeholder="Amount" required>
+       </div>
+       <br>
+
+                                      
+
+                                     
+
+                      <div class="form-group">
+                                           <label>Note</label>
+            <textarea class="form-control" name="note" rows="3" placeholder="Your Note"></textarea>
+                                           
+                           </div>
+                           <br>
+
+
+                                        
+
+                                      
+
+               <button type="submit" name="cust_transfer"  class="btn btn-primary">Submit</button>
+                                                     </form>
             
                
             </div>
@@ -208,38 +259,39 @@ if ($transfer) {
     
         <div class="container event" id="two">
 
-               <table class="table">
+               <form method="post"  action="">
 
-            <thead>
-              <tr>
-                
-                <th scope="col">Name</th>
-                <th scope="col">Amount</th>
-                <th scope="col">date</th>
-                <th scope="col">TransactionID</th>
+                            
+                               
+                                    <div class="form-group">
+                         <label>Receiver Account Number</label>
+                         <div class="form-group">
+                           <input type="text" class="form-control" name="sender" placeholder="Example:1234567" required>
+                            
+                          </div>
+                       </div>  
+                               
+                    <br>
 
-              </tr>
-            </thead>
+                         
+                <div class="form-group">
+         <label>Amount</label>
+         <input type="text" step="any" min="1" name="amount" class="form-control"  placeholder="Amount" required>
+       </div>
+       <br>
 
-            <tbody>
-              <?php 
+                                      
 
-              $user_deposit = $ch->getWithdrawal();
-              foreach ($user_deposit as $row) {
-                  echo '
-                          <tr>
-                              <td>'.$row['account'].'</td>
-                              <td>'.$row['amount'].'</td>
-                              <td>'.$row['withdrawal_date'].'</td>
-                              <td>'.$row['transactionID'].'</td>
-                          </tr>
-                  ';
-              }
+                    <div class="form-group">
+               <label>Reference Number</label>
+        <input type="text"  name="amount" class="form-control"  placeholder="Enter any number" required>
+            
+                                           
+               </div>
+               <br>
 
-              ?> 
-            </tbody>
-
-            </table>
+        <button type="submit" name="cust_transfer"  class="btn btn-primary">Submit</button>
+                                                     </form>
               
             </div>
 
@@ -339,17 +391,35 @@ if ($transfer) {
                             
                         </div>
 
-
-                         
-
-                       
-
 <button type="submit" name="cust_transfer"  class="btn btn-primary">Submit</button>
                                       </form>
+                </div>
 
-             
-              
-            </div>
+                <!-- deposit -->
+                <div class="container deposit" id="four">
+
+                    <form method="post">
+                         <div class="form-group">
+                            <label>Account Number</label>
+         <input type="text" name="myAccount" class="form-control" placeholder="Account Number" required>
+                        </div>
+                        <br>
+
+                         <div class="form-group">
+                            <label>Amount</label>
+         <input type="text" name="depositAmount" class="form-control" placeholder="Deposit Amount" required>
+                        </div>
+                        <br>
+         
+
+                            
+
+<button type="submit" name="cust_transfer"  class="btn btn-primary">Submit</button>
+
+                        
+                    </form>
+                    
+                </div>
 
                
              
