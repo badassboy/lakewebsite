@@ -10,7 +10,7 @@ body,
     }
 
     .navbar{
-      display: none;
+/*      display: none;*/
     }
     
     #sidebar {
@@ -114,6 +114,8 @@ body,
       footer{
         display: none;
       }
+
+     
 
       .
       .row-offcanvas-left .sidebar-offcanvas {

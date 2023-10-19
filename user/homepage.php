@@ -50,11 +50,17 @@
           <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="accounts.php">Accounts</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="#myAlert" data-toggle="collapse">Wow</a>
+          <a class="nav-link" href="transactions.php">Transfer</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="">Payment</a>
+        </li>
+      
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
