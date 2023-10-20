@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['id'])) {
+  header("index.php");
+  exit;
+}
 ?>
 <html lang="en">
 <head>
@@ -61,25 +65,8 @@ session_start();
           
           <br>
           <!-- payment -->
-          <ul class="list-group">
-             <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Payment</h5>
-      <!-- <small>3 days ago</small> -->
-    </div>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cras justo odio
-              <span class="badge badge-primary badge-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Dapibus ac facilisis in
-              <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Morbi leo risus
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
-
+          <?php include("paymentinfo.php"); ?>
+          
            
 
           </div>
@@ -87,61 +74,14 @@ session_start();
 
           <!-- second lane -->
           <div class="col-lg-6 col-md-8">
+            <?php include("message_info.php"); ?>
 
-            <div class="list-group">
-
-               <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Messages</h5>
-      <!-- <small>3 days ago</small> -->
-    </div>
-
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h6 class="mb-1">List group item heading</h6>
-      <small>3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-   
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h6 class="mb-1">List group item heading</h6>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-   
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h6 class="mb-1">List group item heading</h6>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-   
-  </a>
-</div>
+            
 <!-- end of messaging -->
 <br>
 
           <!-- Transfer -->
-            <ul class="list-group">
-             <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Transfer</h5>
-      <!-- <small>3 days ago</small> -->
-    </div>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cras justo odio
-              <span class="badge badge-primary badge-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Dapibus ac facilisis in
-              <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Morbi leo risus
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
+            <?php include("transferinfo.php"); ?>
            
           </div>
           <!-- second lane -->
@@ -164,9 +104,7 @@ session_start();
 
         <a id="layouts"></a>
         <hr>
-        <!-- <h2 class="sub-header">Interesting layouts and elements</h2> -->
-       <!--  -->
-        <!-- end here -->
+     
         <!--/row-->
 
       </div>
@@ -232,20 +170,15 @@ session_start();
     );
   </script>
 
-  <!--scripts loaded here-->
+ 
 
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
- -->
-
-  <script>
+ <!--  <script>
     $(document).ready(function() {
       $("[data-toggle=offcanvas]").click(function() {
         $(".row-offcanvas").toggleClass("active");
       });
     });
-  </script>
+  </script> -->
 
 </body>
 
