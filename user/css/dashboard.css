@@ -40,15 +40,24 @@ body,
 
     #main{
       margin-top: 2%;
+/*      display: flex;*/
+/*      align-items: center;*/
+
     }
 
     .mb-1{
       font-size: 16px;
     }
 
-    .nav  li a{
-      color: #595959;
+    .navbar {
+/*      background-color: blue;*/
     }
+
+    .navbar-nav .nav-item .nav-link{
+      color: #ffffff;
+    }
+/*     
+
     /*
 
 
@@ -117,8 +126,8 @@ body,
 
      
 
-      .
-      .row-offcanvas-left .sidebar-offcanvas {
+      
+     /* .row-offcanvas-left .sidebar-offcanvas {
         left: -45%;
       }
       .row-offcanvas-left.active {
@@ -127,7 +136,7 @@ body,
       }
       .sidebar-offcanvas {
         width: 45%;
-      }
+      }*/
     }
     
     .card {

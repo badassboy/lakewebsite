@@ -1,25 +1,22 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<html>
-
+<?php
+session_start();
+?>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>lakesideCreditUnion</title>
-  <base target="_self">
-  <meta name="description" content="A banking website"
-  />
+
+  <meta name="description" content="A banking website"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google" value="notranslate">
-  <link rel="shortcut icon" href="/images/cp_ico.png">
+
+  <!-- <link rel="shortcut icon" href="/images/cp_ico.png"> -->
 
 
   <!--stylesheets / link tags loaded here-->
 
 
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
   <link rel="stylesheet" type="text/css" href="css/dashboard.css">
@@ -34,195 +31,34 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="flex-row d-flex">
-      <a class="navbar-brand mb-1" href="#">Brand</a>
-      <button type="button" class="hidden-md-up navbar-toggler" data-toggle="offcanvas" title="Toggle responsive left sidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="accounts.php">Accounts</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="transactions.php">Transfer</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="">Payment</a>
-        </li>
-      
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">About</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+ 
+ <!-- navbar -->
+ <?php include("navbar.php"); ?>
 
   <div class="container-fluid" id="main">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-        <ul class="nav flex-column pl-1">
-          <li class="nav-item"><a class="nav-link" href="homepage.php">Dashboard</a></li>
-         
-          <li class="nav-item">
-            <a class="nav-link" href="accounts.php"><span><i class="fa fa-money"></i></span> Account</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="transactions.php">
-            <span><i class="fa fa-exchange"></i></span> Transfer</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="">
-            <span><i class="fa fa-money"></i></span> Deposit Check</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="">
-            <span><i class="fa fa-money"></i></span> Payment</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="">
-            <span><i class="fa fa-comments-o"></i></span> Messages</a></li>
-          
-        </ul>
-      </div>
-      <!--/col-->
+    <!-- sidebar -->
 
-      <div class="col-md-9 col-lg-10 main">
+   <div class="col-md-9 col-lg-10 main">
 
-        <!--toggle sidebar button
-            <p class="hidden-md-up">
-                <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
-            </p>-->
+    <!-- user account details -->
 
-      <!--   <h1 class="display-2 hidden-xs-down">
-            Bootstrap 4 Dashboard
-            </h1> -->
-        <!-- <p class="lead hidden-xs-down">(with off-canvas sidebar, based on BS v4 alpha 6)</p> -->
-
-        <div class="alert alert-warning fade collapse" role="alert" id="myAlert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-          <strong>Holy guacamole!</strong> It's free.. this is an example theme.
-        </div>
-
-      
-        <!-- user account details -->
-
-        <div class="row mb-3 first">
-
-        <div class="col-xl-3 col-lg-6">
-            <div class="card card-inverse">
-              <div class="card-body">
-                <div class="rotate">
-                  <i class="fa fa-exchange fa-2x"></i>
-                </div>
-                <h6 class="text-uppercase">Transfer</h6>
-                <!-- <h1 class="display-2">134</h1> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-inverse">
-              <div class="card-body">
-                <div class="rotate">
-                  <i class="fa fa-money fa-2x"></i>
-                </div>
-                <h6 class="text-uppercase">Deposit</h6>
-                <!-- <h1 class="display-1">87</h1> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-inverse">
-              <div class="card-body">
-                <div class="rotate">
-                  <i class="fa fa-money fa-2x"></i>
-                </div>
-                <h6 class="text-uppercase">Pay a bill</h6>
-                <!-- <h1 class="display-1">125</h1> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-inverse">
-              <div class="card-body">
-                <div class="rotate">
-                  <i class="fa fa-comments-o fa-2x"></i>
-                </div>
-                <h6 class="text-uppercase">Message</h6>
-                <!-- <h1 class="display-1">36</h1> -->
-              </div>
-            </div>
-          </div>
-
-        </div>
+       <?php include("cards.php"); ?>
         <!--/row-->
 
-       
-
-      
-
-        <a id="features"></a>
+       <a id="features"></a>
         
-       
-
-        <hr>
+       <hr>
         <!-- section section -->
         <div class="row mb-3 second">
 
           <div class="col-lg-6 col-md-4">
 
-             <ul class="list-group">
-             <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Accounts</h5>
-      <!-- <small>3 days ago</small> -->
-    </div>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Checkings
-              <span class="badge badge-primary badge-pill">$20</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Savings
-              <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Loans
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
+             <?php include("accountinfo.php"); ?>
           <br>
+
             <!-- transaction -->
-          <ul class="list-group">
-             <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Transaction</h5>
-      <!-- <small>3 days ago</small> -->
-    </div>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cras justo odio
-              <span class="badge badge-primary badge-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Dapibus ac facilisis in
-              <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Morbi leo risus
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
+            <?php include("transactioninfo.php"); ?>
+          
           <br>
           <!-- payment -->
           <ul class="list-group">
@@ -344,27 +180,9 @@
   </footer> -->
 
 
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-        </div>
-        <div class="modal-body">
-          This is a dashboard layout for Bootstrap 4. This is an example of the Modal component which you can use to show content. Any content can be placed inside the modal and it can use the Bootstrap grid classes.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary-outline" data-dismiss="modal">OK</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <script>
     // sandbox disable popups
@@ -416,10 +234,10 @@
 
   <!--scripts loaded here-->
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-
+ -->
 
   <script>
     $(document).ready(function() {
