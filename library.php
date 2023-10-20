@@ -101,26 +101,31 @@ public function checkDuplicateEmail($email){
 
 
  public function secondPageRegister($register_date,$email,$country, $id){
- 	$dbh = DB();
- 	
+ 	try{
 
-  
-	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ? "); 
+ 		$dbh = DB();
+ 	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ? "); 
 	$stmt->execute([$register_date,$email,$country, $id]);
 	return ($stmt->rowCount()>0) ? $this->redirect("create_account3.php") : false;
+
+ 	}catch(PDOException $ex){
+ 		error_log("Error:" .$ex->getMessage(), "error.log");
+ 	}
+ 	
 
  }
 
 
  public function thirdPageRegister($accnt_type,$password,$id){
 
- 				$dbh = DB();
- 
-				
-
+	try{
+				$dbh = DB();
 				$stmt =$dbh->prepare("UPDATE account SET account_type = ?, password = ? WHERE id = ?"); 
 				$stmt->execute([$accnt_type,$this->encryptPassword($password), $id]);
 				return ($stmt->rowCount()>0) ? $this->redirect("user/homepage.php") : false;
+		}catch(PDOException $ex){
+			echo "Error:" .$ex->getMessage();
+		}
 
  }
 
@@ -162,15 +167,11 @@ public function checkDuplicateEmail($email){
 	 }
 
 
- 	
+ public function accountActivation($email){
 
- 
+			try{
 
-		
-
-		public function accountActivation($email){
-			
-			$dbh =DB();
+				$dbh =DB();
 
 			$stmt = $dbh->prepare("SELECT * FROM account WHERE email=?");
 			$stmt->execute([$email]);
@@ -201,11 +202,12 @@ public function checkDuplicateEmail($email){
 					}
 			}
 
-
-
+			}catch(PDOException $ex){
+				error_log("Error:" .$ex->getMessage(), "error.log");
+			}
 			
-
 	}
+
 
 	public function verificationStatus($id)
 	{
@@ -472,8 +474,9 @@ public function checkDuplicateEmail($email){
 					
 	public function transfers($email,$name,$city,$address,$status,$amount,$holder,$account_number)
 	{
+		try{
 
-		$dbh = DB();
+			$dbh = DB();
 		$stmt = $dbh->prepare("INSERT INTO transfers(email,cust_name,city,address,status,amount,account_holder,account_number) VALUES(?,?,?,?,?,?,?,?)");
 		$stmt->execute([$email,$name,$city,$address,$status,$amount,$holder,$account_number]);
 		$inserted = $stmt->rowCount();
@@ -482,13 +485,20 @@ public function checkDuplicateEmail($email){
 		}else {
 			return $dbh->errorInfo();
 		}
+
+		}catch(PDOException $ex){
+			error_log("Error:".$ex->getMessage(), "error.log");
+		}
+
+		
 	}
 
 	// public function transfers2($name, $accnt_name,$accnt_number,$city,$address,$mobile,$id)
 	public function Receivertransfer($name, $accnt_name,$accnt_number,$city,$address,$phone,$email)
 	{
+		try{
 
-		$dbh = DB();
+			$dbh = DB();
 		
 		$stmt = $dbh->prepare("UPDATE transfers SET receiver_name=?, receiver_account_name=?, receiver_account_number=?,receiver_city=?,receiver_address=?,receiver_mobile=? WHERE email=?");
 		$stmt->execute([$name, $accnt_name,$accnt_number,$city,$address,$phone,$email]);
@@ -499,6 +509,11 @@ public function checkDuplicateEmail($email){
 		    return $dbh->errorInfo();
 		}
 
+
+		}catch(PDOException $ex){
+			error_log("Error:".$ex->getMessage(), "error.log");
+		}
+		
 
 	}
 
@@ -618,12 +633,19 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 
 	public function displayUserData($id)
 	{
-		$dbh = DB();
+		try{
+
+			$dbh = DB();
 		$stmt = $dbh->prepare("SELECT * FROM account WHERE id=?");
 		$stmt->execute([$id]);
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			return $row;
 		}
+
+		}catch(PDOException $ex){
+			error_log("Error:".$ex->getMessage(), "error.log");
+		}
+		
 	}
 
 	public function changePassword($id,$pwd1)
@@ -645,8 +667,6 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 	public function changeCustomerPassword($id,$pwd1)
 	{
 		$dbh = DB();
-
-		
 		$hashed = password_hash($pwd1,PASSWORD_DEFAULT);
 		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE id=?");
 		$stmt->execute([$hashed,$id]);
