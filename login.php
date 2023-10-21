@@ -49,7 +49,7 @@ if (isset($_POST['login'])) {
 
         if ($user_login) {
 
-      $_SESSION['id'] = $user_login['id'];
+      $_SESSION['id'] = $user_login['userId'];
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
 
