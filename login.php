@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
     if ($user_login) {
         
         // store user's id in  a session for later usage
-         $_SESSION['id'] = $user_login['id'];
+         $_SESSION['id'] = $user_login['userId'];
         // user sssion last for a week when remember checkbox is ticked
       session_set_cookie_params(3600*24*7);
 

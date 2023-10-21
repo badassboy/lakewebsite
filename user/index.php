@@ -23,7 +23,7 @@ if (isset($_POST['account'])) {
   }else {
     $user_login = $bank->loginUser($email,$password);
     if ($user_login) {
-      $_SESSION['id'] = $user_login['id'];
+      $_SESSION['id'] = $user_login['userId'];
       $_SESSION['email'] = $user_login['email'];
       $_SESSION['first'] = $user_login['first_name'];
       header("Location:homepage.php");

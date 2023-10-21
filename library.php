@@ -104,7 +104,7 @@ public function checkDuplicateEmail($email){
  	try{
 
  		$dbh = DB();
- 	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE id = ? "); 
+ 	$stmt = $dbh->prepare("UPDATE account SET birthday = ?, email = ?, country = ? WHERE userId = ? "); 
 	$stmt->execute([$register_date,$email,$country, $id]);
 	return ($stmt->rowCount()>0) ? $this->redirect("create_account3.php") : false;
 
@@ -120,7 +120,7 @@ public function checkDuplicateEmail($email){
 
 	try{
 				$dbh = DB();
-				$stmt =$dbh->prepare("UPDATE account SET account_type = ?, password = ? WHERE id = ?"); 
+				$stmt =$dbh->prepare("UPDATE account SET account_type = ?, password = ? WHERE userId = ?"); 
 				$stmt->execute([$accnt_type,$this->encryptPassword($password), $id]);
 				return ($stmt->rowCount()>0) ? $this->redirect("user/homepage.php") : false;
 		}catch(PDOException $ex){
@@ -212,7 +212,7 @@ public function checkDuplicateEmail($email){
 	public function verificationStatus($id)
 	{
 		$dbh = DB();
-		$stmt = $dbh->prepare("UPDATE account SET verified=1 WHERE id=?");
+		$stmt = $dbh->prepare("UPDATE account SET verified=1 WHERE userId=?");
 		$stmt->execute([$id]);
 		$data = $stmt->rowCount();
 		if ($data>0) {
@@ -306,7 +306,7 @@ public function checkDuplicateEmail($email){
 	// this function insert customer otp code into the database
 	public function insertCustomerOTP($customer_id,$optCode){
 		$dbh = DB();
-		$stmt = $dbh->prepare("UPDATE account SET login_code = ? WHERE id = ?");
+		$stmt = $dbh->prepare("UPDATE account SET login_code = ? WHERE userId = ?");
 		$stmt->execute([$optCode,$customer_id]);
 		return ($stmt->rowCount()>0) ? true : false;
 
@@ -333,7 +333,7 @@ public function checkDuplicateEmail($email){
 	{
 		try{
 		  $dbh = DB();
-		$stmt = $dbh->prepare("SELECT * FROM account WHERE id = ?");
+		$stmt = $dbh->prepare("SELECT * FROM account WHERE userId = ?");
 		$stmt->execute([$id]);
 		$data = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $data;
@@ -631,12 +631,14 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 
 	}
 
+
+
 	public function displayUserData($id)
 	{
 		try{
 
 			$dbh = DB();
-		$stmt = $dbh->prepare("SELECT * FROM account WHERE id=?");
+		$stmt = $dbh->prepare("SELECT * FROM account WHERE userId=?");
 		$stmt->execute([$id]);
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			return $row;
@@ -654,7 +656,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 
 		
 		$hashed = password_hash($pwd1,PASSWORD_DEFAULT);
-		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE id=?");
+		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE userId=?");
 		$stmt->execute([$hashed,$id]);
 		if ($stmt->rowCount()>0) {
 			return true;
@@ -668,7 +670,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 	{
 		$dbh = DB();
 		$hashed = password_hash($pwd1,PASSWORD_DEFAULT);
-		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE id=?");
+		$stmt = $dbh->prepare("UPDATE account SET password=? WHERE userId=?");
 		$stmt->execute([$hashed,$id]);
 		if ($stmt->rowCount()>0) {
 			return true;
@@ -715,7 +717,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 				// update user's profile details
  		try{
 
-	        $stmt = $dbh->prepare("UPDATE account SET profile=? WHERE id=?");
+	        $stmt = $dbh->prepare("UPDATE account SET profile=? WHERE userId=?");
 	        $stmt->execute(["img/".$file_name, $id]);
 	        if ($stmt->rowCount()>0) {
 	        	return true;
@@ -859,7 +861,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 		public function customerDetails($id)
 		{
 			$dbh = DB();
-			$stmt = $dbh->prepare("SELECT * FROM account WHERE id =?");
+			$stmt = $dbh->prepare("SELECT * FROM account WHERE userId =?");
 			$stmt->execute([$id]);
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $data;
@@ -972,7 +974,7 @@ $stmt->execute([$fullname,$email,$mobile,$address,$loan_type,$amount,$date,$gros
 	public function checkLoginCode($code,$id)
 	{
 		$dbh = DB();
-		$stmt = $dbh->prepare("SELECT * FROM account WHERE id = ?");
+		$stmt = $dbh->prepare("SELECT * FROM account WHERE userId = ?");
 		$stmt->execute([$id]);
 		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($data as $row) {

@@ -2,18 +2,33 @@
 include("../database.php");
 // $ch = new Banking();
 $account_balance = "";
+$amount = "";
 
 // $user_info = $ch->customerDetails($_SESSION['id']);
 // foreach ($user_info as $row) {
 //    $account_balance = $row['balance'];
 //  } 
 
-  $dbh = DB();
-      $stmt = $dbh->prepare("SELECT * FROM account WHERE id =?");
+      $dbh = DB();
+      $stmt = $dbh->prepare("SELECT * FROM account WHERE userId =?");
       $stmt->execute([$_SESSION['id']]);
       $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
       foreach ($data as $row) {
         $account_balance = $row['balance'];
+      }
+
+
+      // display customer loan
+       $sql = "SELECT loans.userId, loans.amount
+              FROM loans
+            INNER JOIN account ON loans.userId=account.userId";
+          $stmt = $dbh->prepare($sql);
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      // var_dump($data);
+      foreach ($data as $row) {
+      
+        $amount = $row['amount'];
       }
 
   
@@ -32,10 +47,10 @@ $account_balance = "";
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Savings
-              <span class="badge badge-primary badge-pill">2</span>
+              <span class="badge badge-primary badge-pill">$7000</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Loans
-              <span class="badge badge-primary badge-pill">1</span>
+              <span class="badge badge-primary badge-pill">$<?php echo $amount; ?></span>
             </li>
           </ul>
