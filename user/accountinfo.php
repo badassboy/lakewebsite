@@ -2,6 +2,7 @@
 include("../database.php");
 // $ch = new Banking();
 $account_balance = "";
+$account_number = "";
 $amount = "";
 
 // $user_info = $ch->customerDetails($_SESSION['id']);
@@ -14,6 +15,7 @@ $amount = "";
       $stmt->execute([$_SESSION['id']]);
       $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
       foreach ($data as $row) {
+        $account_number = $row['account_number'];
         $account_balance = $row['balance'];
       }
 
@@ -42,9 +44,15 @@ $amount = "";
       <!-- <small>3 days ago</small> -->
     </div>
             <li class="list-group-item d-flex justify-content-between align-items-center">
+              Account Number
+              <span class="badge badge-primary badge-pill"><?php echo $account_number;?></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               Checkings
               <span class="badge badge-primary badge-pill">$<?php echo $account_balance;?></span>
             </li>
+
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Savings
               <span class="badge badge-primary badge-pill">$7000</span>
