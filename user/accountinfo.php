@@ -60,16 +60,23 @@ $amount = "";
         
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              Checkings
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example1Modal">
+              Checking
+              </button>
               <span class="badge badge-primary badge-pill">$<?php echo $account_balance;?></span>
             </li>
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example2Modal">
               Savings
+              </button>
               <span class="badge badge-primary badge-pill">$7000</span>
             </li>
+
             <li class="list-group-item d-flex justify-content-between align-items-center">
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example3Modal">
               Loans
+              </button>
               <span class="badge badge-primary badge-pill">$<?php echo $amount; ?></span>
             </li>
           </ul>
