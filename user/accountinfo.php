@@ -43,10 +43,21 @@ $amount = "";
       <h5 class="mb-1">Accounts</h5>
       <!-- <small>3 days ago</small> -->
     </div>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            
+           <li class="list-group-item d-flex justify-content-between align-items-center">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Account Number
-              <span class="badge badge-primary badge-pill"><?php echo $account_number;?></span>
+              </button>
+             <span class="badge badge-primary badge-pill">
+                
+                <?php echo $account_number;?>
+              
+                  
+                </span>
             </li>
+
+
+        
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Checkings
@@ -62,3 +73,5 @@ $amount = "";
               <span class="badge badge-primary badge-pill">$<?php echo $amount; ?></span>
             </li>
           </ul>
+
+          <?php include("modal/account_modal.php"); ?>
