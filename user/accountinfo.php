@@ -84,7 +84,7 @@ $amount = "";
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example4Modal">
               Routing number
               </button>
-              <span class="badge badge-primary badge-pill">123456</span>
+              <span class="badge badge-primary badge-pill">027000029</span>
             </li>
 
 

@@ -130,7 +130,7 @@
         <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Routing number
-    <span class="badge badge-primary badge-pill">12345</span>
+    <span class="badge badge-primary badge-pill">027000029</span>
   </li>
   
 </ul>
