@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Account Number</h5>
+        <h5 class="modal-title" id="exampleModalLabel">LakesideCreditUnion(...<?php echo $account_number; ?>)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,7 +13,7 @@
         <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Account Number
-    <span class="badge badge-primary badge-pill">$<?php echo $account_number; ?></span>
+    <span class="badge badge-primary badge-pill"><?php echo $account_number; ?></span>
   </li>
   
 </ul>
@@ -33,7 +33,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModal1Label">Account Balance</h5>
+        <h5 class="modal-title" id="exampleModal1Label">LakesideCreditUnion(...<?php echo $account_number; ?>)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -42,7 +42,7 @@
 
         <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Checking
+    Account balance
     <span class="badge badge-primary badge-pill">$<?php echo $account_balance; ?></span>
   </li>
   
@@ -62,7 +62,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModal2Label">Savings</h5>
+        <h5 class="modal-title" id="exampleModal2Label">LakesideCreditUnion(...<?php echo $account_number; ?>)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -91,7 +91,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModal3Label">Loans</h5>
+        <h5 class="modal-title" id="exampleModal3Label">LakesideCreditUnion(...<?php echo $account_number; ?>)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

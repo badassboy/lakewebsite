@@ -61,7 +61,7 @@ $amount = "";
 
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example1Modal">
-              Checking
+              Account balance
               </button>
               <span class="badge badge-primary badge-pill">$<?php echo $account_balance;?></span>
             </li>
