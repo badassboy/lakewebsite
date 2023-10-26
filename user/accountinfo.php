@@ -79,6 +79,15 @@ $amount = "";
               </button>
               <span class="badge badge-primary badge-pill">$<?php echo $amount; ?></span>
             </li>
+
+             <li class="list-group-item d-flex justify-content-between align-items-center">
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example4Modal">
+              Routing number
+              </button>
+              <span class="badge badge-primary badge-pill">123456</span>
+            </li>
+
+
           </ul>
 
           <?php include("modal/account_modal.php"); ?>
