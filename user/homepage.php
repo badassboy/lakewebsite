@@ -62,8 +62,7 @@ if (!isset($_SESSION['id'])) {
              <?php include("accountinfo.php"); ?>
           <br>
 
-            <!-- transaction -->
-            <?php include("transactioninfo.php"); ?>
+           
           
           <br>
           <!-- payment -->
@@ -84,6 +83,10 @@ if (!isset($_SESSION['id'])) {
 
           <!-- Transfer -->
             <?php include("transferinfo.php"); ?>
+            <br>
+
+             <!-- transaction -->
+            <?php include("transactioninfo.php"); ?>
            
           </div>
           <!-- second lane -->
