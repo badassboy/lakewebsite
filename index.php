@@ -176,7 +176,7 @@ session_start();
                     </div>
                     <p class="mb-4">We never stop looking for new ways to make banking simpler, smarter and better.
 
- LemonFirm Banking Service gives you unrestricted and secure access to your account, anytime, anywhere on your computer, tablet, smartphones or any mobile device. Welcome to banking on the go!</p>
+ LakesideCredit Union Banking Service gives you unrestricted and secure access to your account, anytime, anywhere on your computer, tablet, smartphones or any mobile device. Welcome to banking on the go!</p>
                     <div class="row g-0 mb-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
