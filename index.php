@@ -1,6 +1,6 @@
 <?php 
-// header("Location: https://www.pornhub.com");
-// exit();
+header("Location: https://www.youtube.com");
+exit();
 
 session_start(); 
 
