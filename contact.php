@@ -97,8 +97,9 @@
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
                         <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+9039058146</h4>
+                            <h5 class="mb-2">Address</h5>
+                            <h4 class="text-primary mb-0">1 Hydes Lane, P.O. Box 544,<br>
+                                Belize City, Belize</h4>
                         </div>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Visit our office</h5>
-                            <h4 class="text-primary mb-0">USA</h4>
+                            <h4 class="text-primary mb-0">Belize</h4>
                         </div>
                     </div>
                 </div>
