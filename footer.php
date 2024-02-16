@@ -12,7 +12,7 @@
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">Belize</p>
+        <p class="mb-0">7th Street, Sinkor Tubman Boulevard Monrovia, Liberia</p>
                             </div>
                           <!--   <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
@@ -20,7 +20,7 @@
                             </div> -->
                             <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+1 505-395-7359</p>
+                                <p class="mb-0">+231 8887 06878</p>
                             </div>
 
                            

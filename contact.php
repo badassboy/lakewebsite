@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Startup - Startup Website Template</title>
+    <title>LakesideCreditUnion - Banking Company</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -96,11 +96,10 @@
                         <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
-                        <div class="ps-4">
-                            <h5 class="mb-2">Address</h5>
-                            <h5 class="text-primary mb-0">1 Hydes Lane, P.O. Box 544,
-                                Belize City, Belize</h5>
-                        </div>
+<div class="ps-4">
+<h5 class="mb-2">Address</h5>
+<h5 class="text-primary mb-0">7th Street, Sinkor Tubman Boulevard Monrovia, Liberia</h5>
+</div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -121,7 +120,7 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="mb-2">Visit our office</h5>
-                            <h5 class="text-primary mb-0">Belize</h5>
+                            <h5 class="text-primary mb-0">Liberia</h5>
                         </div>
                     </div>
                 </div>
@@ -149,12 +148,11 @@
                     </form>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                   <!--  <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe> -->
 
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1951544.9237078612!2d-89.63993974300507!3d17.18911518069107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5c5b3ec112faf9%3A0xf64a8a4d3f1ee34e!2sBelize!5e0!3m2!1sen!2sgh!4v1706369148944!5m2!1sen!2sgh" width="420" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15863.58644685504!2d-10.76700296773299!3d6.277321880531458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s7th%20Street%2C%20Sinkor%20Tubman%20Boulevard%20Monrovia%2C%20Liberia!5e0!3m2!1sen!2sgh!4v1708115418333!5m2!1sen!2sgh" width="420" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                   
+
+                      <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1951544.9237078612!2d-89.63993974300507!3d17.18911518069107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5c5b3ec112faf9%3A0xf64a8a4d3f1ee34e!2sBelize!5e0!3m2!1sen!2sgh!4v1706369148944!5m2!1sen!2sgh" width="420" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
                 </div>
             </div>
         </div>
