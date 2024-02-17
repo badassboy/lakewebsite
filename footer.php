@@ -5,27 +5,58 @@
                
 
                 <div class="col-lg-8 col-md-6">
+                    <!-- adress -->
                     <div class="row gx-5">
+
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h3 class="text-light mb-0">Get In Touch</h3>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
+                               
+
         <p class="mb-0">7th Street, Sinkor Tubman Boulevard Monrovia, Liberia</p>
                             </div>
-                          <!--   <div class="d-flex mb-2">
-                                <i class="bi bi-envelope-open text-primary me-2"></i>
-                                <p class="mb-0">info@example.com</p>
-                            </div> -->
+
                             <div class="d-flex mb-2">
-                                <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">+231 8887 06878</p>
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                               
+
+        <p class="mb-0">50 market square Belize city , Central America</p>
+                            </div>
+
+
+                   
+
+                           
+                        </div>
+                        <!-- end of address -->
+
+                        <!-- Phone numbers -->
+                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Mobile</h3>
                             </div>
 
                            
 
+                          
+
+
+                    <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">Liberia: +231 8887 06878</p>
+                            </div>
+
+                           
                         </div>
+
+
+
+
+                        <!-- phone numbers -->
+
 
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
