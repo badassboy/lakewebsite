@@ -19,12 +19,12 @@
         <p class="mb-0">7th Street, Sinkor Tubman Boulevard Monrovia, Liberia</p>
                             </div>
 
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-geo-alt text-primary me-2"></i>
-                               
+    <div class="d-flex mb-2">
+        <i class="bi bi-geo-alt text-primary me-2"></i>
+       
 
-        <p class="mb-0">50 market square Belize city , Central America</p>
-                            </div>
+<p class="mb-0">50 market square Belize city , Central America</p>
+    </div>
 
 
                    
@@ -35,9 +35,9 @@
 
                         <!-- Phone numbers -->
                          <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Mobile</h3>
-                            </div>
+<div class="section-title section-title-sm position-relative pb-3 mb-4">
+    <h3 class="text-light mb-0">Mobile</h3>
+</div>
 
                            
 
