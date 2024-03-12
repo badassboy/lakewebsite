@@ -21,9 +21,15 @@
 
     <div class="d-flex mb-2">
         <i class="bi bi-geo-alt text-primary me-2"></i>
-       
+       <p class="mb-0">50 market square Belize city , Central America</p>
 
-<p class="mb-0">50 market square Belize city , Central America</p>
+    </div>
+
+
+     <div class="d-flex mb-2">
+        <i class="bi bi-geo-alt text-primary me-2"></i>
+       <p class="mb-0">Queens Road, Johannesburg, 1000</p>
+
     </div>
 
 
@@ -47,6 +53,18 @@
                     <div class="d-flex mb-2">
                                 <i class="bi bi-telephone text-primary me-2"></i>
                                 <p class="mb-0">Liberia: +231 8887 06878</p>
+                            </div>
+                            <br>
+
+                              <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0"></p>
+                            </div>
+                            <br>
+
+                              <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">South Africa: +27 678216252</p>
                             </div>
 
                            

@@ -113,13 +113,22 @@
                         <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
-<div class="ps-4">
-<!-- <h5 class="mb-2">Address</h5> -->
-<h5 class="text-primary mb-0">50 market square Belize city , Central America</h5>
-</div>
-
-
+                    <div class="ps-4">
+                    <!-- <h5 class="mb-2">Address</h5> -->
+                    <h5 class="text-primary mb-0">50 market square Belize city , Central America</h5>
                     </div>
+                </div>
+                <br>
+
+                 <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                    <div class="ps-4">
+                    <!-- <h5 class="mb-2">Address</h5> -->
+                    <h5 class="text-primary mb-0">Queens Road, Johannesburg, 1000</h5>
+                    </div>
+                </div>
 
                 </div>
 
@@ -157,6 +166,18 @@
         <h5 class="text-primary mb-0">Belize</h5>
                         </div>
                     </div>
+                    <br>
+                    <!-- third office -->
+                     <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                    <!-- <h5 class="mb-2">Visit our office</h5> -->
+        <h5 class="text-primary mb-0">South Africa</h5>
+                        </div>
+                    </div>
+
 
                 </div>
 
